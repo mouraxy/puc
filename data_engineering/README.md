@@ -3,3 +3,5 @@ Modelo em data warehouses, o Star Schema conecta tabela de `fatos` e `dimensões
 
 > <b>...</b> <br>
 Embora reduza a necessidade de junções complexas, armazenamento e redundância são possíveis riscos associados.
+
+<br>Dado seu enfoque em ambientes de Business Intelligence (BI), este modelo será incorporado ao MVP com as respectivas **[tabelas...]()**
