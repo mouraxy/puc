@@ -107,7 +107,7 @@ Para garantir a integridade dos dados e evitar possíveis erros de conexão, imp
   ## Catálogo de dados...
   Um catálogo ou dicionário de dados é uma estrutura de governança e consiste em uma compilação de metadados em uma disposição informacional.
   
-  ```Entidade: DW MORADORES_SITUACAO_RUA```
+  ```Entidade: DW FACT_MORADORES_SITUACAO_RUA```
   | id | variavel                                     | tipo          | minimo       | maximo       | fonte                                                                                                           |
   |----|:---------------------------------------------|:-----:|:------------:|:------------:|:-----------------------------------------------------------------------------------------------------------------------:|       
   | 1  | id_municipio                                 |‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ inteiro‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ | 1.100.015    | 5.222.203    | [SNAS²](http://blog.mds.gov.br/redesuas/wp-content/uploads/2018/06/Lista_Munic%C3%ADpios_com_IBGE_Brasil_Versao_CSV.csv) |
