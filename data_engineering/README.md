@@ -3,7 +3,7 @@
 ## Extract...
 ## Modeling...
 <dl><dd><dl><dd>
-<details><summary>Organização dos dados...</summary>
+<details open><summary>Organização dos dados...</summary>
 
 ## *Star schema...*
 Modelo em data warehouses, o Star Schema conecta tabela de `fatos` e `dimensões` por indentificadores distintos, formando uma estrutura de estrela. 
@@ -15,10 +15,10 @@ Embora reduza a necessidade de junções complexas, armazenamento e redundância
 
 </details>
 
-<details><summary>Metadados...</summary>
+<details open><summary>Metadados...</summary>
 
 ## Catálogo de dados...
-Um catálogo ou dicionário de dados é uma coleção dos metadados, facilitando a localização, compreensão e uso eficaz das informações, promovendo a colaboração e a governança dos dados.
+Um catálogo ou dicionário de dados é uma estrutura de governança e consiste em uma compilação de metadados em uma disposição informacional.
 
 ```Entidade: DW MORADORES_SITUACAO_RUA```
 | id | variavel                                     | tipo          | minimo       | maximo       | fonte                                                                                                           |
