@@ -1,7 +1,9 @@
 
-<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/puc.png" align="right"
-     alt="puc-rio" height="120">
-`Última atualização: 27/08/2023`
+<img src="https://raw.githubusercontent.com/mouraxy/puc/main/data_engineering/img/puc.png" align="right"
+     alt="puc-rio" height="200">
+
+
+`Última atualização: 27/08/2023 as 17:20.`
 
 ## Description/objective...
 
@@ -10,13 +12,12 @@
 
 
 ## Extract...
-
+<dl>
+    <dd>
+         
 <details><summary>Dados e armazenamento...</summary>
-
-  
-  Para acompanhar o histórico da população brasileira, incluindo informações sobre a população em situação de rua e índices socioeconômicos, foram realizadas pesquisas e compilações de diversos conjuntos de dados. O objetivo era criar uma base de dados abrangente e significativa.
-
-
+<br>
+Para acompanhar o histórico da população brasileira, incluindo informações sobre a população em situação de rua e índices socioeconômicos, foram realizadas pesquisas e compilações de diversos conjuntos de dados. O objetivo era criar uma base de dados abrangente e significativa.
 
 ## Pipeline ...
 Utilizou-se o Azure Data Factory para criar um pipeline de ingestão automatizada dos dados no Data Lake. O pipeline permitiu reunir os dados de diferentes fontes e formatos, simplificando o processo de coleta e armazenamento.
@@ -28,9 +29,8 @@ Todos os conjuntos de dados foram armazenados no **Data Lake Storage Gen2**, o D
 
 Para garantir a integridade dos dados e evitar possíveis erros de conexão, implementou-se um tratamento de erros. Um aplicativo lógico foi configurado para monitorar a conexão e, caso ocorressem problemas, acionaria uma notificação por e-mail.
 
-
-
-
+<dl>
+    <dd>
 
 <details><summary>Configuração do aplicativo lógico...</summary>
   
@@ -57,8 +57,14 @@ Para garantir a integridade dos dados e evitar possíveis erros de conexão, imp
 ```
 </details>
 
+  </dd>
+</dl>
+
+
 </details>
 
+  </dd>
+</dl>
 
 
 
@@ -132,10 +138,120 @@ Para garantir a integridade dos dados e evitar possíveis erros de conexão, imp
 
 
 
-## ETL/load...
+## Carga...
 
 `Databricks` <img align="center" src="https://cdn.safe.com/wp-content/uploads/sites/2/2023/03/27112124/databricks-icon.svg" alt="drawing" width="18"/> é uma plataforma escalável em nuvem que harmoniza os processos de Extração, Transformação e Carga (ETL) paralelamente.
 
+> <b>...</b> <br>
+Execução paralela envolve a realização simultânea de diversas operações visando otimizar a eficiência computacional.
+
+<br>O uso do Databricks se mostra mais vantajoso em comparação ao emprego do **[expressor de consultas](https://learn.microsoft.com/en-us/azure/data-factory/data-flow-transformation-overview)** do `Azure Data Factory` <img align="center" src="https://ww1.freelogovectors.net/wp-content/uploads/2022/03/azure_data_factory_logo_freelogovectors.net_.png" alt="drawing" width="18"/>, devido à relativa complexidade estrutural do projeto e à capacidade de integração de linguagens (Python e SQL), além de conectores diversificados. 
+<br>
+
+<dl>
+    <dd>
+         
+### Código ETL...
+
+`1. Ponto de montagem...`
+Recuperar os dados do contêiner (diretório) associado ao Data Lake da Azure...
+
+<details open><summary>Mostrar código...</summary>
+
+```py
+dbutils.fs.mount(source = "wasbs://puc@datalakenoblesix.blob.core.windows.net", mount_point = "/mnt/puc",
+                 extra_configs = {"fs.azure.account.key.datalakenoblesix.blob.core.windows.net":"chave-de-acesso"})
+```
+
+</details>
+
+</details>
+
+<br>
+
+`2. Ler aquivos...`
+Criar DataFrames/visualizações temporárias com os dados do DL para tratativas subsequentes...
+
+<details><summary>Mostrar código...</summary>
+
+```py
+df_moradores_rua = spark.read.format("csv")\
+                                  .option("sep", ",")\
+                                  .option("header", "true")\
+                                  .option("inferSchema", "true")\
+                                  .load("/mnt/puc/mvp/engenharia_dados/populacao_sem_teto.csv")
+
+df_moradores_rua.createOrReplaceTempView("populacao_sem_teto")
+
+df_municipios = spark.read.format("csv")\
+                                          .option("sep", ";")\
+                                          .option("header", "true")\
+                                          .option("inferSchema", "true")\
+                                          .option("encoding", "ISO-8859-1")\
+                                          .load("/mnt/puc/mvp/engenharia_dados/municipios.csv")
+
+df_coordenadas_dos_municipios = spark.read.format("csv")\
+                                          .option("sep", ",")\
+                                          .option("header", "true")\
+                                          .option("inferSchema", "true")\
+                                          .load("/mnt/puc/mvp/engenharia_dados/dim_coordenadas_municipios.csv")
+```
+
+</details>
+
+<br>
+
+`3. Tratar dados...`
+Alteração dos rótulos das colunas e eliminação de variáveis não pertinentes ao projeto.
+
+<details><summary>Mostrar código...</summary>
+
+```py
+colunas_para_excluir = ['ConcatUF+Mun', 'IBGE', 'Capital', '_c9']
+df_municipios = df_municipios.drop(*colunas_para_excluir)
+
+df_municipios = df_municipios.withColumnRenamed('IBGE7', 'id_municipio')\
+                             .withColumnRenamed('UF', 'uf')\
+                             .withColumnRenamed('Município', 'municipio')\
+                             .withColumnRenamed('Região', 'regiao')\
+                             .withColumnRenamed('População 2010', 'populacao_censo_2010')\
+                             .withColumnRenamed('Porte', 'porte')
+
+df_moradores_rua = df_moradores_rua.withColumnRenamed('populacao', 'moradores_rua')\
+                                             .withColumnRenamed('ano', 'ano_levantamento')
+```
+
+</details>
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</details>
+
+<br>
+
+
+
+
+
+
+
+  </dd>
+</dl>
