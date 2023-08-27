@@ -202,7 +202,10 @@ df_coordenadas_dos_municipios = spark.read.format("csv")\
 <br>
 
 `3. Tratar dados...`
-Alteração dos rótulos das colunas e eliminação de variáveis não pertinentes ao projeto.
+1. Alteração dos rótulos das colunas e eliminação de variáveis não pertinentes ao projeto.
+
+<dl>
+    <dd>
 
 <details><summary>Mostrar código...</summary>
 
@@ -219,6 +222,105 @@ df_municipios = df_municipios.withColumnRenamed('IBGE7', 'id_municipio')\
 
 df_moradores_rua = df_moradores_rua.withColumnRenamed('populacao', 'moradores_rua')\
                                              .withColumnRenamed('ano', 'ano_levantamento')
+```
+
+</details>
+
+  </dd>
+</dl>
+
+2. Reestruturação das tabelas seguindo o modelo de dados estrela. A criação de um DW nesse esquema facilitará substancialmente o trabalho no Power BI.
+
+<dl>
+    <dd>
+
+<details><summary>Mostrar código...</summary>
+
+```py
+df_coordenadas_dos_municipios.createOrReplaceTempView("COORDENADAS_MUNICIPIOS")
+df_municipios.createOrReplaceTempView("MUNICIPIOS")
+df_moradores_rua.createOrReplaceTempView("MORADORES_RUA")
+
+df_municipios_id = spark.sql(""" SELECT municipio
+                          FROM MUNICIPIOS
+                          ORDER BY municipio
+""")
+
+df_municipios_id = df_municipios_id.withColumn('id_municipio', monotonically_increasing_id()+1)
+df_municipios_id.createOrReplaceTempView("DIM_MUNICIPIOS")
+
+df_regiao = spark.sql(""" SELECT DISTINCT regiao
+                          FROM MUNICIPIOS
+                          ORDER BY regiao
+""")
+
+df_regiao = df_regiao.withColumn('id_regiao', monotonically_increasing_id()+1)
+df_regiao.createOrReplaceTempView("DIM_REGIAO")
+
+df_estado = spark.sql(""" SELECT DISTINCT uf
+                          FROM MUNICIPIOS
+                          ORDER BY uf
+""")
+
+df_estado = df_estado.withColumn('id_uf', monotonically_increasing_id()+1)
+df_estado.createOrReplaceTempView("DIM_UNIDADE_FEDERATIVA")
+
+df_porte = spark.sql(""" SELECT DISTINCT porte
+                          FROM MUNICIPIOS
+                          ORDER BY porte
+""")
+
+df_porte = df_porte.withColumn('id_porte', monotonically_increasing_id()+1)
+df_porte.createOrReplaceTempView("DIM_PORTE_MUNICIPIO")
+
+df_fato = spark.sql("""
+                    SELECT 
+                        M.id_municipio, U.id_uf, R.id_regiao, C.latitude, C.longitude, P.id_porte,
+                        M.populacao_censo_2010, MR.moradores_rua, MR.ano_levantamento
+
+                        FROM MUNICIPIOS M
+                        LEFT JOIN MORADORES_RUA MR ON MR.id_municipio = M.id_municipio
+                        LEFT JOIN COORDENADAS_MUNICIPIOS C ON C.id_municipio = M.id_municipio
+                        LEFT JOIN DIM_REGIAO R ON R.regiao = M.regiao
+                        LEFT JOIN DIM_UNIDADE_FEDERATIVA U ON U.uf = M.uf
+                        LEFT JOIN DIM_PORTE_MUNICIPIO P ON P.porte = M.porte
+
+                        ORDER BY M.id_municipio
+""")
+
+```
+
+  </dd>
+</dl>
+
+</details>
+
+<br>
+
+`4. Carregar...`
+Importar os dados para o banco de dados SQL na nuvem. 
+  > <b>...</b> <br>
+  Previamente, foi necessário preparar o ambiente na Azure por meio das instruções DDL, você pode acessá-las **[aqui!]()**
+
+<details><summary>Mostrar código...</summary>
+
+```py
+def carga_sql(df, tabela):
+    df.write.format("jdbc")\
+            .mode("append")\
+            .option("url", "jdbc:sqlserver://mouraxy.database.windows.net")\
+            .option("port", "1433")\
+            .option("user", "mouraxy")\
+            .option("password", "senha-banco-de-dados")\
+            .option("database", "bd_mouraxy")\
+            .option("dbtable", tabela)\
+            .save()
+
+carga_sql(df_municipios_id, "DW.DIM_MUNICIPIOS")
+carga_sql(df_regiao, "DW.DIM_REGIAO")
+carga_sql(df_estado, "DW.DIM_UNIDADE_FEDERATIVA")
+carga_sql(df_porte, "DW.DIM_PORTE_MUNICIPIO")
+carga_sql(df_fato, "DW.FACT_MORADORES_SITUACAO_RUA")
 ```
 
 </details>
@@ -242,10 +344,6 @@ df_moradores_rua = df_moradores_rua.withColumnRenamed('populacao', 'moradores_ru
 
 
 
-
-</details>
-
-<br>
 
 
 
