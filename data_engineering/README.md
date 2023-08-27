@@ -154,7 +154,7 @@ Execução paralela envolve a realização simultânea de diversas operações v
 ### Código ETL...
 
 `1. Ponto de montagem...`
-Recuperar os dados do contêiner (diretório) associado ao Data Lake da Azure...
+Recuperar os dados do contêiner (diretório) associado ao Data Lake da Azure.
 
 <details open><summary>Mostrar código...</summary>
 
@@ -170,7 +170,7 @@ dbutils.fs.mount(source = "wasbs://puc@datalakenoblesix.blob.core.windows.net", 
 <br>
 
 `2. Ler aquivos...`
-Criar DataFrames/visualizações temporárias com os dados do DL para tratativas subsequentes...
+Criar DataFrames/visualizações temporárias com os dados do DL para tratativas subsequentes.
 
 <details><summary>Mostrar código...</summary>
 
