@@ -107,7 +107,7 @@ Para garantir a integridade dos dados e evitar possíveis erros de conexão, imp
   ## Catálogo de dados...
   Um catálogo ou dicionário de dados é uma estrutura de governança e consiste em uma compilação de metadados em uma disposição informacional.
   
-  ```Entidade: DW FACT_MORADORES_SITUACAO_RUA```
+  ```Entidade: DW.FACT_POP_RUA```
   | id | variavel                                     | tipo          | minimo       | maximo       | fonte                                                                                                           |
   |----|:---------------------------------------------|:-----:|:------------:|:------------:|:-----------------------------------------------------------------------------------------------------------------------:|       
   | 1  | id_municipio                                 |‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ inteiro‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ | 1.100.015    | 5.222.203    | [SNAS²](http://blog.mds.gov.br/redesuas/wp-content/uploads/2018/06/Lista_Munic%C3%ADpios_com_IBGE_Brasil_Versao_CSV.csv) |
@@ -316,11 +316,11 @@ def carga_sql(df, tabela):
             .option("dbtable", tabela)\
             .save()
 
-carga_sql(df_municipios_id, "DW.DIM_MUNICIPIOS")
+carga_sql(df_municipios_id, "DW.DIM_MUNICIPIO")
 carga_sql(df_regiao, "DW.DIM_REGIAO")
 carga_sql(df_estado, "DW.DIM_UNIDADE_FEDERATIVA")
 carga_sql(df_porte, "DW.DIM_PORTE_MUNICIPIO")
-carga_sql(df_fato, "DW.FACT_MORADORES_SITUACAO_RUA")
+carga_sql(df_fato, "DW.FACT_POP_RUA")
 ```
 
 </details>
