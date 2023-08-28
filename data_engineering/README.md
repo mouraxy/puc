@@ -89,7 +89,7 @@ Para garantir a integridade dos dados e evitar possíveis erros de conexão, imp
   <dl>
     <dd>
 
-  <details open><summary>Organização dos dados...</summary>
+  <details><summary>Organização dos dados...</summary>
   
   ## *Star schema...*
   Modelo em data warehouses, o Star Schema conecta tabela de `fatos` e `dimensões` por indentificadores distintos, formando uma estrutura de estrela. 
@@ -98,11 +98,11 @@ Para garantir a integridade dos dados e evitar possíveis erros de conexão, imp
   > <b>...</b> <br>
   Embora reduza a necessidade de junções complexas, armazenamento e redundância são possíveis riscos associados.
   
-  <br>Dado seu enfoque em ambientes de Business Intelligence (BI), `este modelo será incorporado ao MVP` com as respectivas **[tabelas...]()**
+  <br>Dado seu enfoque em ambientes de Business Intelligence (BI), `este modelo será incorporado ao MVP` com as respectivas **[tabelas...](https://github.com/mouraxy/puc/tree/main/data_engineering/data_lake)**
   
   </details>
   
-  <details open><summary>Metadados...</summary>
+  <details><summary>Metadados...</summary>
 
   ## Catálogo de dados...
   Um catálogo ou dicionário de dados é uma estrutura de governança e consiste em uma compilação de metadados em uma disposição informacional.
@@ -156,7 +156,7 @@ Execução paralela envolve a realização simultânea de diversas operações v
 `1. Ponto de montagem...`
 Recuperar os dados do contêiner (diretório) associado ao Data Lake da Azure.
 
-<details open><summary>Mostrar código...</summary>
+<details><summary>Mostrar código...</summary>
 
 ```py
 dbutils.fs.mount(source = "wasbs://puc@datalakenoblesix.blob.core.windows.net", mount_point = "/mnt/puc",
@@ -300,7 +300,7 @@ df_fato = spark.sql("""
 `4. Carregar...`
 Importar os dados para o banco de dados SQL na nuvem. 
   > <b>...</b> <br>
-  Previamente, foi necessário preparar o ambiente na Azure por meio das instruções DDL, você pode acessá-las **[aqui!]()**
+  Previamente, foi necessário preparar o ambiente na Azure por meio das instruções DDL, você pode acessá-las **[aqui!](https://github.com/mouraxy/puc/blob/main/data_engineering/sql/ddl.sql)**
 
 <details><summary>Mostrar código...</summary>
 
