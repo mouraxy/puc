@@ -2,29 +2,27 @@
 <img src="https://raw.githubusercontent.com/mouraxy/puc/main/data_engineering/img/puc.png" align="right"
      alt="puc-rio" height="200">
 
+`Última atualização: 28/08/2023 as 00:30.`
 
-`Última atualização: 27/08/2023 as 17:20.`
+## Descrição/objetivo...
 
-## Description/objective...
-
-
-
-
-
-## Extract...
+## Coleta...
 <dl>
     <dd>
          
 <details><summary>Dados e armazenamento...</summary>
 <br>
-Para acompanhar o histórico da população brasileira, incluindo informações sobre a população em situação de rua e índices socioeconômicos, foram realizadas pesquisas e compilações de diversos conjuntos de dados. O objetivo era criar uma base de dados abrangente e significativa.
+
+Foram compilados seis conjuntos de dados provenientes da internet (**[clique aqui para acessar](https://github.com/mouraxy/puc/tree/main/data_engineering/data_lake)**) com formatos e estruturas diversas. Esta seleção objetivou emular cenários realistas de engenharia de dados, os quais frequentemente transcendem tabelas simples com dados homogêneos.
 
 ## Pipeline ...
-Utilizou-se o Azure Data Factory para criar um pipeline de ingestão automatizada dos dados no Data Lake. O pipeline permitiu reunir os dados de diferentes fontes e formatos, simplificando o processo de coleta e armazenamento.
 
-#### Armazenamento...
-Todos os conjuntos de dados foram armazenados no **Data Lake Storage Gen2**, o Datalake da Microsoft. Para essa etapa, foi utilizado o **Azure Data Factory**, uma ferramenta para criar pipelines de ingestão automatizada.
+Todos os conjuntos de dados foram armazenados no `Data Lake Storage Gen2`, o Datalake da Microsoft. Para essa etapa, foi utilizado o `Azure Data Factory`, uma ferramenta para criar pipelines de ingestão automatizada.
 
+  > <b>...</b> <br>
+O pipeline centralizou todos os seis conjuntos de dados com diferentes fontes e formatos no Data Lake.
+
+<!--
 #### Erros de conexão...
 
 Para garantir a integridade dos dados e evitar possíveis erros de conexão, implementou-se um tratamento de erros. Um aplicativo lógico foi configurado para monitorar a conexão e, caso ocorressem problemas, acionaria uma notificação por e-mail.
@@ -60,40 +58,21 @@ Para garantir a integridade dos dados e evitar possíveis erros de conexão, imp
   </dd>
 </dl>
 
+-->
 
 </details>
 
   </dd>
 </dl>
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
     
-## Modeling...
+## Modelagem...
   <dl>
     <dd>
 
-  <details><summary>Organização dos dados...</summary>
+  <details open><summary>Organização dos dados...</summary>
   
   ## *Star schema...*
   Modelo em data warehouses, o Star Schema conecta tabela de `fatos` e `dimensões` por indentificadores distintos, formando uma estrutura de estrela. 
-  
   
   > <b>...</b> <br>
   Embora reduza a necessidade de junções complexas, armazenamento e redundância são possíveis riscos associados.
@@ -130,13 +109,6 @@ Para garantir a integridade dos dados e evitar possíveis erros de conexão, imp
 
   </dd>
 </dl>
-
-
-
-
-
-
-
 
 ## Carga...
 
@@ -201,11 +173,10 @@ df_coordenadas_dos_municipios = spark.read.format("csv")\
 
 <br>
 
-`3. Tratar dados...`
-1. Alteração dos rótulos das colunas e eliminação de variáveis não pertinentes ao projeto.
-
-<dl>
-    <dd>
+`3. Tratar dados...` Renomear e remover variáveis. Também reestruturar as tabelas seguindo o modelo de dados estrela. 
+  
+> <b>...</b> <br>
+A criação de um DW nesse esquema facilitará substancialmente o trabalho no Power BI.
 
 <details><summary>Mostrar código...</summary>
 
@@ -222,21 +193,7 @@ df_municipios = df_municipios.withColumnRenamed('IBGE7', 'id_municipio')\
 
 df_moradores_rua = df_moradores_rua.withColumnRenamed('populacao', 'moradores_rua')\
                                              .withColumnRenamed('ano', 'ano_levantamento')
-```
 
-</details>
-
-  </dd>
-</dl>
-
-2. Reestruturação das tabelas seguindo o modelo de dados estrela. A criação de um DW nesse esquema facilitará substancialmente o trabalho no Power BI.
-
-<dl>
-    <dd>
-
-<details><summary>Mostrar código...</summary>
-
-```py
 df_coordenadas_dos_municipios.createOrReplaceTempView("COORDENADAS_MUNICIPIOS")
 df_municipios.createOrReplaceTempView("MUNICIPIOS")
 df_moradores_rua.createOrReplaceTempView("MORADORES_RUA")
@@ -290,17 +247,15 @@ df_fato = spark.sql("""
 
 ```
 
-  </dd>
-</dl>
-
 </details>
 
 <br>
 
 `4. Carregar...`
 Importar os dados para o banco de dados SQL na nuvem. 
+
   > <b>...</b> <br>
-  Previamente, foi necessário preparar o ambiente na Azure por meio das instruções DDL, você pode acessá-las **[aqui!](https://github.com/mouraxy/puc/blob/main/data_engineering/sql/ddl.sql)**
+  Previamente, foi necessário preparar o ambiente na Azure por meio das instruções DDL. Você pode acessá-las **[aqui!](https://github.com/mouraxy/puc/blob/main/data_engineering/sql/ddl.sql)**
 
 <details><summary>Mostrar código...</summary>
 
@@ -325,31 +280,43 @@ carga_sql(df_fato, "DW.FACT_POP_RUA")
 
 </details>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   </dd>
 </dl>
+
+## Revisão...
+
+<dl>
+ <dd>
+  <details><summary>Qualidade de dados...</summary>
+               
+  </details>
+
+  <details><summary>Solução do problema...</summary>
+                          
+  </details>
+
+ </dd>
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
