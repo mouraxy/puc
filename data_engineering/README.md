@@ -1,17 +1,21 @@
 
 <img src="https://raw.githubusercontent.com/mouraxy/puc/main/data_engineering/img/puc.png" align="right"
      alt="puc-rio" height="200">
-
-`Última atualização: 01/09/2023 as 23:16.`
-
-## Descrição/objetivo(s)...
-
-<dl>
-    <dd>
+     
+**Dispersão dos moradores de rua no Brasil sob a perspectiva geoespacial e multidimensional.**             
+`Última atualização: 01/09/2023 as 23:16.` 
 
 <br>
 
-`Populacional/espacial...` Quantificar os indivíduos em situação de vulnerabilidade habitacional e mapear sua distribuição geográfica em território nacional.
+## Descrição/objetivo(s)...
+
+Urge com o próposito de direcionar políticas, recursos e estratégias de intervenção/assistência social e mitigar os desafios enfrentados por essa população vulnerável, promovendo uma sociedade mais justa e inclusiva. 
+
+Assuntos a serem explorados:
+<dl>
+    <dd>
+
+`Populacionais/espaciais...` Quantificar os indivíduos em situação de vulnerabilidade habitacional e mapear sua distribuição geográfica em território nacional.
 
 **1.** Quantos indivíduos em condição de sem-teto são registrados no território brasileiro?
 
