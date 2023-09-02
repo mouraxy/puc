@@ -5,15 +5,13 @@
 `Última atualização: 01/09/2023 as 23:16.`
 
 ## Descrição/objetivo(s)...
+
 <dl>
     <dd>
 
 <br>
 
 `Populacional/espacial...` Quantificar os indivíduos em situação de vulnerabilidade habitacional e mapear sua distribuição geográfica em território nacional.
-
-<dl>
-    <dd>
 
 **1.** Quantos indivíduos em condição de sem-teto são registrados no território brasileiro?
 
@@ -60,25 +58,41 @@
 
 <br>
 
-`Econômicas...` Medir a correlação percentual da taxa de desemprego/inflação com as oscilações históricas dos desabrigados.
+`Econômicas...` Associar o percentual de desempregados/inflação com as oscilações históricas dos desabrigados.
+
+**1.** Qual é o coeficiente de correlação (*r*) entre as variáveis? Existe uma associação significativa entre elas?
+
+<details><summary>...</summary>
+
+</details>
+
+**2.** Em caso afirmativo, em quais situações elas apresentam uma maior ou menor relação?
+
+<details><summary>...</summary>
+
+</details>
 
 <br>
 
 `Climáticas...` Identificar situações climáticas adversas, associadas ao risco hipotérmico e suscetibilidade a doenças.
 
+**1.** Para municípios com alta concentração de moradores em situação de rua...
 
+<details><summary>...</summary>
 
+**1.1** Quais experimentam mais dias frios (< 13ºC) ao longo do ano, em média?
 
+**1.2** Quais estão mais suscetíveis a enchentes (> 50mm) ao longo do ano, em média?
 
+</details>
 
+  </dd>
+</dl>
+   
+  </dd>
+</dl>
 
-
-
-
-
-
-
-
+<br>
 
 ## Coleta...
 <dl>
