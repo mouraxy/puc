@@ -62,7 +62,7 @@ Assuntos a serem explorados:
 
 <br>
 
-`Econômicas...` Associar o percentual de desempregados/inflação com as oscilações históricas dos desabrigados.
+`Econômicos...` Associar o percentual de desempregados/inflação com as oscilações históricas dos desabrigados.
 
 **1.** Qual é o coeficiente de correlação (*r*) entre as variáveis? Existe uma associação significativa entre elas?
 
@@ -78,7 +78,7 @@ Assuntos a serem explorados:
 
 <br>
 
-`Climáticas...` Identificar situações climáticas adversas, associadas ao risco hipotérmico e suscetibilidade a doenças.
+`Climáticos...` Identificar situações climáticas adversas, associadas ao risco hipotérmico e suscetibilidade a doenças.
 
 **1.** Para municípios com alta concentração de moradores em situação de rua...
 
