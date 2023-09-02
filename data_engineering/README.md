@@ -96,7 +96,6 @@ Assuntos a serem explorados:
   </dd>
 </dl>
 
-<br>
 
 ## Coleta...
 <dl>
