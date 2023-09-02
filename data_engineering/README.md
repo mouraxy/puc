@@ -2,9 +2,83 @@
 <img src="https://raw.githubusercontent.com/mouraxy/puc/main/data_engineering/img/puc.png" align="right"
      alt="puc-rio" height="200">
 
-`Última atualização: 28/08/2023 as 00:30.`
+`Última atualização: 01/09/2023 as 23:16.`
 
-## Descrição/objetivo...
+## Descrição/objetivo(s)...
+<dl>
+    <dd>
+
+<br>
+
+`Populacional/espacial...` Quantificar os indivíduos em situação de vulnerabilidade habitacional e mapear sua distribuição geográfica em território nacional.
+
+<dl>
+    <dd>
+
+**1.** Quantos indivíduos em condição de sem-teto são registrados no território brasileiro?
+
+<details><summary>...</summary>
+     
+**1.1** Por município?
+
+**1.2** Por porte municipal?
+
+**1.3** Por unidade federativa?
+
+</details>
+
+
+**2.** Qual é a proporção da população brasileira que se encontra em situação de rua?
+
+<details><summary>...</summary>
+
+**2.1** Por município?
+
+**2.2** Por porte municipal?
+
+**2.3** Por unidade federativa?
+
+</details>
+
+**3.** Quando e quais foram os maiores crescimentos ou declínios populacionais para o grupo em questão?
+
+<details><summary>...</summary>
+
+**3.1** Por município?
+
+**3.2** Por porte municipal?
+
+**3.3** Por unidade federativa?
+
+</details>
+
+**4.** A densidade demográfica está relacionada à concentração absoluta ou proporcional de pessoas em situação de rua?
+
+<details><summary>...</summary>
+
+</details>
+
+<br>
+
+`Econômicas...` Medir a correlação percentual da taxa de desemprego/inflação com as oscilações históricas dos desabrigados.
+
+<br>
+
+`Climáticas...` Identificar situações climáticas adversas, associadas ao risco hipotérmico e suscetibilidade a doenças.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Coleta...
 <dl>
