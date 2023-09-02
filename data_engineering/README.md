@@ -101,10 +101,10 @@ Assuntos a serem explorados:
 <dl>
     <dd>
          
-<details><summary>Dados e armazenamento...</summary>
+<details open><summary>Dados e armazenamento...</summary>
 <br>
 
-Foram compilados seis conjuntos de dados provenientes da internet (**[clique aqui para acessar](https://github.com/mouraxy/puc/tree/main/data_engineering/data_lake)**) com formatos e estruturas diversas. Esta seleção objetivou emular cenários realistas de engenharia de dados, os quais frequentemente transcendem tabelas simples com dados homogêneos.
+Foram compilados 1773 conjuntos de dados provenientes da internet (**[clique aqui para acessar](https://github.com/mouraxy/puc/tree/main/data_engineering/data_lake)**) com formatos e estruturas diversas. Esta seleção objetivou emular cenários realistas de engenharia de dados, os quais frequentemente transcendem tabelas simples com dados homogêneos.
 
 ## Pipeline ...
 
@@ -216,7 +216,7 @@ Execução paralela envolve a realização simultânea de diversas operações v
          
 ### Código ETL...
 
-`1. Ponto de montagem...`
+`Ponto de montagem...`
 Recuperar os dados do contêiner (diretório) associado ao Data Lake da Azure.
 
 <details><summary>Mostrar código...</summary>
@@ -232,7 +232,7 @@ dbutils.fs.mount(source = "wasbs://puc@datalakenoblesix.blob.core.windows.net", 
 
 <br>
 
-`2. Ler aquivos...`
+`Ler aquivos...`
 Criar DataFrames/visualizações temporárias com os dados do DL para tratativas subsequentes.
 
 <details><summary>Mostrar código...</summary>
@@ -264,7 +264,7 @@ df_coordenadas_dos_municipios = spark.read.format("csv")\
 
 <br>
 
-`3. Tratar dados...` Renomear e remover variáveis. Também reestruturar as tabelas seguindo o modelo de dados estrela. 
+`Tratar dados...` Renomear e remover variáveis. Também reestruturar as tabelas seguindo o modelo de dados estrela. 
   
 > <b>...</b> <br>
 A criação de um DW nesse esquema facilitará substancialmente o trabalho no Power BI.
@@ -342,7 +342,7 @@ df_fato = spark.sql("""
 
 <br>
 
-`4. Carregar...`
+`Carregar...`
 Importar os dados para o banco de dados SQL na nuvem. 
 
   > <b>...</b> <br>
