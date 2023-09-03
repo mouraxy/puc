@@ -3,7 +3,7 @@
      alt="puc-rio" height="200">
      
 **Dispersão dos moradores de rua no Brasil sob a perspectiva geoespacial e multidimensional.**             
-`Última atualização: 01/09/2023 as 23:16.` 
+`Última atualização: 03/09/2023 as 02:32.` 
 
 <br>
 
@@ -105,6 +105,10 @@ Assuntos a serem explorados:
 <br>
 
 Foram compilados 1773 conjuntos de dados provenientes da internet (**[clique aqui para acessar](https://github.com/mouraxy/puc/tree/main/data_engineering/data_lake)**) com formatos e estruturas diversas. Esta seleção objetivou emular cenários realistas de engenharia de dados, os quais frequentemente transcendem tabelas simples com dados homogêneos.
+
+Os dados climáticos provenientes das estações meteorológicas automáticas (EMA) podem ser acessados através do **[INMET](https://portal.inmet.gov.br/dadoshistoricos)**.
+
+
 
 ## Pipeline ...
 
