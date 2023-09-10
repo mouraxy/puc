@@ -19,8 +19,20 @@ Assuntos a serem explorados:
 
 **1.** Quantos indivíduos em condição de sem-teto são registrados no território brasileiro?
 
-<details><summary>...</summary>
-     
+<details open><summary>...</summary>
+
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/historico_pop_rua.png" align="left"
+     alt="historico_pop_rua">
+
+```python
+Resposta: 158.057
+```
+> >>  Inserir descrição...
+
+<br><br><br><br><br><br><br><br><br>
+
+<img align="center" src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/Imagem7-removebg-preview.png"> Acessar fonte de dados...
+
 **1.1** Por município?
 
 **1.2** Por porte municipal?
