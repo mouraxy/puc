@@ -7,7 +7,7 @@
 
 <br>
 
-## Descrição/objetivo(s)...
+## Objetivo(s)/resultados...
 
 Urge com o próposito de direcionar políticas, recursos e estratégias de intervenção/assistência social e mitigar os desafios enfrentados por essa população vulnerável, promovendo uma sociedade mais justa e inclusiva. 
 
@@ -99,11 +99,11 @@ Resposta: 158.057
 <details open><summary>...</summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/convergencia_estatistica.PNG" align="left"
-     alt="correlacao_desemprego">
+     alt="convergencia_estatistica">
 
 ***Resposta:** <br> Nos anos de 2013 e 2014, observa-se uma notável disparidade nos valores estatísticos, com percentuais de 80,51% e 69,01%, respectivamente. <br><br> Em contraste, os anos de 2016 e 2020 se destacam por apresentarem uma estreita concordância estatística, com diferenças ínfimas de apenas 5,25% e -0,91%, respectivamente.*
 
-<br><br><br><br><br>
+<br><br><br>
 </details>
 
 <br>
@@ -111,23 +111,29 @@ Resposta: 158.057
 
 
 
+#### Climáticos: identificar situações climáticas adversas, associadas ao risco hipotérmico e suscetibilidade a doenças.
 
+**1.** Para os 25 municípios com as maiores concentrações de moradores em situação de rua...
 
-
-
-
-
-
-
-`Climáticos...` Identificar situações climáticas adversas, associadas ao risco hipotérmico e suscetibilidade a doenças.
-
-**1.** Para municípios com alta concentração de moradores em situação de rua...
-
-<details><summary>...</summary>
+<details open><summary>...</summary>
 
 **1.1** Quais experimentam mais dias frios (< 13ºC) ao longo do ano, em média?
 
-**1.2** Quais estão mais suscetíveis a enchentes (> 50mm) ao longo do ano, em média?
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/temperatura_municipios.PNG" align="left"
+     alt="temperatura_municipios">
+
+***Resposta:** <br> Em média, de 2019 a 2022, cidades como Sorocaba, Osasco, Porto Alegre, Campinas, São Bernardo, Guarulhos e São Paulo registraram mais de 40 dias com temperaturas mínimas inferiores a 13°C. Curitiba teve o maior valor, com 134 dias.<br><br>Em resumo, 90.479 pessoas (57,25% de toda a população em situação de rua do Brasil) estariam suscetíveis à hipotermia em aproximadamente 10% dos dias do ano.*
+
+<br><br>
+
+**1.2** Quais destes são mais suscetíveis a enchentes (> 50mm) ao longo do ano, em média?
+
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/pluviosidade_municipios.PNG" align="left"
+     alt="pluviosidade_municipios">
+
+***Resposta:** <br>No período de 2019 a 2022, as cidades de Manaus, Salvador, Joinville, Fortaleza, Brasília e Florianópolis experimentaram, em média, entre 10 e 5 chuvas diárias superiores a 50mm por ano.<br><br>Para as demais 19 cidades, a média manteve-se em aproximadamente 4 dias anuais com esse nível de precipitação.*
+
+<br><br><br><br><br><br>
 
 </details>
 
@@ -136,7 +142,6 @@ Resposta: 158.057
    
   </dd>
 </dl>
-
 
 ## Coleta...
 <dl>
