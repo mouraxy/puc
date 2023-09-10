@@ -74,21 +74,50 @@ Resposta: 158.057
 
 <br>
 
-`Econômicos...` Associar o percentual de desempregados/inflação com as oscilações históricas dos desabrigados.
+
+
+
+
+
+#### Econômicos: associar o percentual médio de desempregados com as oscilações históricas dos desabrigados.
 
 **1.** Qual é o coeficiente de correlação (*r*) entre as variáveis? Existe uma associação significativa entre elas?
 
-<details><summary>...</summary>
+<details open><summary>...</summary>
+
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/correlacao_desemprego.PNG" align="left"
+     alt="correlacao_desemprego">
+
+***Resposta:** <br> A correlação (r) é de aproximadamente 0,8983 (forte correlação positiva).* <br><br>  *Ou seja, à medida que a taxa média de desemprego aumenta, a população em situação de rua tende a aumentar também.*
+​
+<br><br><br><br><br><br><br><br><br>
 
 </details>
 
 **2.** Em caso afirmativo, em quais situações elas apresentam uma maior ou menor relação?
 
-<details><summary>...</summary>
+<details open><summary>...</summary>
 
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/convergencia_estatistica.PNG" align="left"
+     alt="correlacao_desemprego">
+
+***Resposta:** <br> Nos anos de 2013 e 2014, observa-se uma notável disparidade nos valores estatísticos, com percentuais de 80,51% e 69,01%, respectivamente. <br><br> Em contraste, os anos de 2016 e 2020 se destacam por apresentarem uma estreita concordância estatística, com diferenças ínfimas de apenas 5,25% e -0,91%, respectivamente.*
+
+<br><br><br><br><br>
 </details>
 
 <br>
+
+
+
+
+
+
+
+
+
+
+
 
 `Climáticos...` Identificar situações climáticas adversas, associadas ao risco hipotérmico e suscetibilidade a doenças.
 
