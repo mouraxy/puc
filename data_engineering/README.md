@@ -24,13 +24,22 @@ Assuntos a serem explorados:
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/historico_pop_rua.png" align="left"
      alt="historico_pop_rua">
 
-<br><br><br><br><br><br><br><br><br>
+***Resposta:** <br> Inserir resposta...*
 
-<img align="center" src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/Imagem7-removebg-preview.png"> Acessar fonte de dados...
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 **1.1** Por município?
 
 **1.2** Por porte municipal?
+
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/pop_rua_porte.PNG" align="left"
+     alt="pop_rua_porte">
+
+<br>
+
+***Resposta:** <br> Inserir resposta...*
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 **1.3** Por unidade federativa?
 
@@ -45,6 +54,15 @@ Assuntos a serem explorados:
 
 **2.2** Por porte municipal?
 
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/proporcao_pop_rua_porte.PNG" align="left"
+     alt="correlacao_desemprego">
+
+<br>
+
+***Resposta:** <br> Inserir resposta...*
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 **2.3** Por unidade federativa?
 
 </details>
@@ -53,9 +71,25 @@ Assuntos a serem explorados:
 
 <details><summary>...</summary>
 
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/variacao_pop_rua.PNG" align="left"
+     alt="correlacao_desemprego">
+
+***Resposta:** <br> Inserir resposta...*
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 **3.1** Por município?
 
 **3.2** Por porte municipal?
+
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/variacao_pop_rua_porte.PNG" align="left"
+     alt="correlacao_desemprego">
+
+<br>
+
+***Resposta:** <br> Inserir resposta...*
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 **3.3** Por unidade federativa?
 
@@ -63,24 +97,13 @@ Assuntos a serem explorados:
 
 **4.** A densidade demográfica está relacionada à concentração absoluta ou proporcional de pessoas em situação de rua?
 
-<details open><summary>...</summary>
+<details><summary>...</summary>
 
 ***Resposta:** <br> Nos 25 municípios com a maior incidência de moradores em situação de rua, observa-se uma densidade média de 3.237 habitantes por quilômetro quadrado, enquanto nos demais municípios essa média se situa em 104 habitantes por quilômetro quadrado. Esse indicador ressalta a tendência de concentração dos indivíduos em situação de rua nas áreas urbanas caracterizadas por uma elevada densidade demográfica. É relevante notar que, dentre os 5.570 municípios do país, dados referentes à população em situação de rua não foram disponibilizados em 1.700 deles.*
-
-
      
 </details>
 
-<br>
-
-
-
-
-
-
-
-
-
+<br><br>
 
 #### Econômicos: associar o percentual médio de desempregados com as oscilações históricas dos desabrigados.
 
@@ -109,10 +132,7 @@ Assuntos a serem explorados:
 <br><br><br>
 </details>
 
-<br>
-
-
-
+<br><br><br>
 
 #### Climáticos: identificar situações climáticas adversas, associadas ao risco hipotérmico e suscetibilidade a doenças.
 
