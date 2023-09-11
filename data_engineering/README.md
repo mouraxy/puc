@@ -24,9 +24,10 @@ Assuntos a serem explorados:
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/historico_pop_rua.png" align="left"
      alt="historico_pop_rua">
 
-***Resposta:** <br> Inserir resposta...*
+***Resposta:** <br> Com os dados mais recentes obtidos em 2021, são registrados em território brasileiro 158.057 moradores em situação de rua.*
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
+
 
 **1.1** Por município?
 
@@ -37,9 +38,9 @@ Assuntos a serem explorados:
 
 <br>
 
-***Resposta:** <br> Inserir resposta...*
+***Resposta:** <br> A maior parte dos moradores em situação de rua estão concentrados em municipios classificados pelo IBGE como metropoles ou cidades grandes.*
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
 
 **1.3** Por unidade federativa?
 
@@ -59,9 +60,9 @@ Assuntos a serem explorados:
 
 <br>
 
-***Resposta:** <br> Inserir resposta...*
+***Resposta:** <br> Mais uma vez, proporcionalmente, os moradores de rua estão mais concentrados nas metrópoles e nas grandes cidades brasileiras.*
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
 
 **2.3** Por unidade federativa?
 
@@ -74,9 +75,9 @@ Assuntos a serem explorados:
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/variacao_pop_rua.PNG" align="left"
      alt="correlacao_desemprego">
 
-***Resposta:** <br> Inserir resposta...*
+***Resposta:** <br> Desde o começo das coletas dos dados pelo Observatório de políticas públicas para pessoas em situação de rua, os maiores crescimentos populacionas de moradores de rua foram nos anos de 203 e 2014. De lá para cá, spo houve uma diminuição, pertencente ao ano de 2019*
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
 
 **3.1** Por município?
 
@@ -87,9 +88,9 @@ Assuntos a serem explorados:
 
 <br>
 
-***Resposta:** <br> Inserir resposta...*
+***Resposta:** <br> Mesmo com o domínio de crescimento perceuntual das cidades de pequeno e médio porte desde o início do levantamento, são as metropóles e grandes cidades que tiveram o maior aumento quantitativo de moradores de rua, mesmo que não necessariamente tenham sido os maiores aumentos relativos.*
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br>
 
 **3.3** Por unidade federativa?
 
@@ -154,7 +155,7 @@ Assuntos a serem explorados:
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/pluviosidade_municipios.PNG" align="left"
      alt="pluviosidade_municipios">
 
-***Resposta:** <br>No período de 2019 a 2022, as cidades de Manaus, Salvador, Joinville, Fortaleza, Brasília e Florianópolis experimentaram, em média, entre 10 e 5 chuvas diárias superiores a 50mm por ano.<br><br>Para as demais 19 cidades, a média manteve-se em aproximadamente 4 dias anuais com esse nível de precipitação.*
+***Resposta:** <br>No período de 2019 a 2022, as cidades de Manaus, Salvador, Joinville, Fortaleza, Brasília e Florianópolis experimentaram, em média, entre 10 e 5 chuvas superiores a 50mm por ano.<br><br>Para as demais 19 cidades, a média manteve-se em aproximadamente 4 dias anuais com esse nível de precipitação.*
 
 <br><br><br><br><br><br>
 
