@@ -15,19 +15,14 @@ Assuntos a serem explorados:
 <dl>
     <dd>
 
-`Populacionais/espaciais...` Quantificar os indivíduos em situação de vulnerabilidade habitacional e mapear sua distribuição geográfica em território nacional.
+#### Populacionais/espaciais: quantificar os indivíduos em situação de vulnerabilidade habitacional e mapear sua distribuição geográfica em território nacional.
 
 **1.** Quantos indivíduos em condição de sem-teto são registrados no território brasileiro?
 
-<details open><summary>...</summary>
+<details><summary>...</summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/historico_pop_rua.png" align="left"
      alt="historico_pop_rua">
-
-```python
-Resposta: 158.057
-```
-> >>  Inserir descrição...
 
 <br><br><br><br><br><br><br><br><br>
 
@@ -68,11 +63,19 @@ Resposta: 158.057
 
 **4.** A densidade demográfica está relacionada à concentração absoluta ou proporcional de pessoas em situação de rua?
 
-<details><summary>...</summary>
+<details open><summary>...</summary>
 
+***Resposta:** <br> Nos 25 municípios com a maior incidência de moradores em situação de rua, observa-se uma densidade média de 3.237 habitantes por quilômetro quadrado, enquanto nos demais municípios essa média se situa em 104 habitantes por quilômetro quadrado. Esse indicador ressalta a tendência de concentração dos indivíduos em situação de rua nas áreas urbanas caracterizadas por uma elevada densidade demográfica. É relevante notar que, dentre os 5.570 municípios do país, dados referentes à população em situação de rua não foram disponibilizados em 1.700 deles.*
+
+
+     
 </details>
 
 <br>
+
+
+
+
 
 
 
