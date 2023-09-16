@@ -1,11 +1,6 @@
-
-<img src="https://raw.githubusercontent.com/mouraxy/puc/main/data_engineering/img/puc.png" align="right"
-     alt="puc-rio" height="200">
-     
 **Dispersão dos moradores de rua no Brasil sob a perspectiva geoespacial e multidimensional.**             
-`Última atualização: 03/09/2023 as 02:32.` 
+`Última atualização: 15/09/2023 as 21:53.` 
 
-<br>
 
 ## Objetivo(s)/resultados...
 
@@ -19,51 +14,77 @@ Assuntos a serem explorados:
 
 **1.** Quantos indivíduos em condição de sem-teto são registrados no território brasileiro?
 
-<details><summary>...</summary>
+<details open><summary>...</summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/historico_pop_rua.png" align="left"
      alt="historico_pop_rua">
 
-***Resposta:** <br> Com os dados mais recentes obtidos em 2021, são registrados em território brasileiro 158.057 moradores em situação de rua.*
+***Resposta:** <br>De acordo com os dados mais recentes, que datam de 2021, o Brasil contava com 158.057 pessoas em situação de rua, refletindo uma diminuição em relação ao ápice observado em 2020, quando o número atingiu 194.824 indivíduos. Essas informações foram coletadas pelas administrações municipais e consolidadas por meio de uma colaboração entre o Ministério da Cidadania e o Observatório Brasileiro de Políticas Públicas.*
 
-<br><br><br><br><br><br><br><br><br><br>
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/link.svg" align="center" align="left" 
+     alt="acessar-dados">  Acessar os dados
 
+**1.1** Por município (n25)?
 
-**1.1** Por município?
+<details open><summary>...</summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/pop_rua_municipios.PNG" align="left"
      alt="pop_rua_porte">
 
+***Resposta:** <br>São Paulo lidera a lista dos 25 municípios com o maior número de pessoas em situação de rua, com um total de 37.200 indivíduos. Isso representa quatro vezes mais do que o número registrado em Belo Horizonte (segundo colocado).*
+
+<br><br><br><br>
+
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/link.svg" align="center" align="left" 
+     alt="acessar-dados">  Acessar os dados
+
 <br>
 
-***Resposta:** <br> A maior parte dos moradores em situação de rua estão concentrados em municipios classificados pelo IBGE como metropoles ou cidades grandes.*
-
-<br><br><br><br><br><br><br><br><br><br>
+</details>
 
 **1.2** Por porte municipal?
+
+<details><summary>...</summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/pop_rua_porte.PNG" align="left"
      alt="pop_rua_porte">
 
 <br>
 
-***Resposta:** <br> A maior parte dos moradores em situação de rua estão concentrados em municipios classificados pelo IBGE como metropoles ou cidades grandes.*
+***Resposta:** <br>81.286 pessoas se concentram nas metrópoles e 54.685 nas cidades grandes. Embora essas áreas urbanas representem somente 5% dos municípios do país (283 de 5.570), elas concentram 86,02% do contingente dos moradores de rua.*
 
-<br><br><br><br><br><br><br><br><br><br>
+<br><br><br>
+
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/link.svg" align="center" align="left" 
+     alt="acessar-dados">  Acessar os dados
+
+<br>
+
+</details>
 
 **1.3** Por unidade federativa?
+
+<details open><summary>...</summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/pop_rua_uf.PNG" align="left"
      alt="pop_rua_porte">
 
 <br>
 
-***Resposta:** <br> A maior parte dos moradores em situação de rua estão concentrados em municipios classificados pelo IBGE como metropoles ou cidades grandes.*
+***Resposta:** <br>O estado de São Paulo abriga uma população de 64.570 indivíduos vivendo em situação de rua, o que representa uma parcela substancial de 40,8% de todo o contingente de pessoas nessa condição em território brasileiro. Notavelmente, essa estatística é 3,45 vezes superior à registrada em Minas Gerais e 4,76 vezes maior do que a do Rio de Janeiro.*
 
-<br><br><br><br><br><br><br><br><br><br>
+<br>
+
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/link.svg" align="center" align="left" 
+     alt="acessar-dados">  Acessar os dados
+
+<br>
 
 </details>
 
+</details>
+
+<br><br>
 
 **2.** Qual é a proporção da população brasileira que se encontra em situação de rua?
 
