@@ -113,6 +113,15 @@ Assuntos a serem explorados:
 
 **3.1** Por município?
 
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/%25var_pop_rua_municipios.PNG" align="left"
+     alt="pop_rua_porte">
+
+<br>
+
+***Resposta:** <br> A maior parte dos moradores em situação de rua estão concentrados em municipios classificados pelo IBGE como metropoles ou cidades grandes.*
+
+<br><br><br><br><br><br><br><br><br><br>
+
 **3.2** Por porte municipal?
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/variacao_pop_rua_porte.PNG" align="left"
@@ -125,6 +134,15 @@ Assuntos a serem explorados:
 <br><br><br><br><br>
 
 **3.3** Por unidade federativa?
+
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/%25var_pop_rua.PNG" align="left"
+     alt="pop_rua_porte">
+
+<br>
+
+***Resposta:** <br> A maior parte dos moradores em situação de rua estão concentrados em municipios classificados pelo IBGE como metropoles ou cidades grandes.*
+
+<br><br><br><br><br><br><br><br><br><br>
 
 </details>
 
