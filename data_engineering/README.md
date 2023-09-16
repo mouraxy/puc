@@ -31,7 +31,7 @@ Assuntos a serem explorados:
 <details open><summary>...</summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/pop_rua_municipios.PNG" align="left"
-     alt="pop_rua_porte">
+     alt="pop_rua_municipios">
 
 ***Resposta:** <br>São Paulo lidera a lista dos 25 municípios com o maior número de pessoas em situação de rua, com um total de 37.200 indivíduos. Isso representa quatro vezes mais do que o número registrado em Belo Horizonte (segundo colocado).*
 
@@ -67,7 +67,7 @@ Assuntos a serem explorados:
 <details open><summary>...</summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/pop_rua_uf.PNG" align="left"
-     alt="pop_rua_porte">
+     alt="pop_rua_uf">
 
 ***Resposta:** <br>O estado de São Paulo abriga uma população de 64.570 indivíduos vivendo em situação de rua, o qual representa uma parcela substancial de 40,8% de todo o contingente de pessoas nessa condição em território brasileiro. Notavelmente, essa estatística é 3,45 vezes superior à registrada em Minas Gerais e 4,76 vezes maior do que a do Rio de Janeiro.*
 
@@ -91,7 +91,7 @@ Assuntos a serem explorados:
 <details><summary>...</summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/%25pop_rua_municipios.PNG" align="left"
-     alt="historico_pop_rua">
+     alt="%pop_rua_municipios">
 
 ***Resposta:** <br> Boa Vista se sobressai como a cidade brasileira com a maior proporção de moradores em situação de rua em relação à sua população total. Além disso, a cidade registrou um notável crescimento populacional, passando de 284.313 habitantes em 2010 para 408.157 em 2022, um aumento de 30,34%.*
 
@@ -108,8 +108,8 @@ Assuntos a serem explorados:
 
 <details><summary>...</summary>
 
-<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/proporcao_pop_rua_porte.PNG" align="left"
-     alt="correlacao_desemprego">
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/%25pop_rua_porte.PNG" align="left"
+     alt="%pop_rua_porte">
 
 ***Resposta:** <br>Embora a população de moradores de rua represente cerca de 0,08% da população total, essa parcela se concentra nas grandes metrópoles, com uma taxa de 0,183%. Essa taxa é mais de 2 vezes superior à média nacional, indicando que as metrópoles abrigam uma parcela desproporcionalmente maior em comparação com o país como um todo.*
 
@@ -127,7 +127,7 @@ Assuntos a serem explorados:
 <details open><summary>...</summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/%25pop_rua_uf.PNG" align="left"
-     alt="historico_pop_rua">
+     alt="%pop_rua_uf">
 
 ***Resposta:** <br>Rondônia é o estado com a maior proporção de moradores de rua em relação à sua população total, registrando 0,309% (censo de 2022). Em segundo lugar está o Distrito Federal com 0,189% e São Paulo com 0,140%.*
 
@@ -147,7 +147,7 @@ Assuntos a serem explorados:
 <details open><summary>...</summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/variacao_pop_rua.PNG" align="left"
-     alt="correlacao_desemprego">
+     alt="%var_pop_rua">
 
 ***Resposta:** <br>Desde o início da coleta de dados em 2012, os anos de 2013 e 2014 destacaram-se como os maiores aumentos na população em situação de rua, registrando crescimentos de 79% e 63%. Desde então, ocorreu somente uma diminuição, de -19% em 2019.*
 
@@ -163,7 +163,7 @@ Assuntos a serem explorados:
 <details><summary>...</summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/%25var_pop_rua_municipios.PNG" align="left"
-     alt="pop_rua_porte">
+     alt="%var_pop_rua_municipios">
 
 ***Resposta:** <br>No período de 2018 a 2022, Porto Alegre e Goiânia se destacaram pelos maiores declínios na população em situação de rua, com reduções de -16% e -11%. Por outro lado, Salvador, Joinville e Boa Vista apresentaram crescimentos superiores a 80% no número de moradores de rua durante o mesmo período.*
 
@@ -181,7 +181,7 @@ Assuntos a serem explorados:
 <details><summary>...</summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/%25var_pop_rua_porte.PNG" align="left"
-     alt="correlacao_desemprego">
+     alt="%var_pop_rua_porte">
 
 ***Resposta:** <br> Embora tenha ocorrido um aumento de 14% entre 2018 e 2021 na população em situação de rua, esse acréscimo foi ainda mais substancial nas pequenas e médias cidades, onde as taxas excederam os 30%. É importante frisar que essa tendência não necessariamente reflete os maiores aumentos em termos absolutos.*
 
@@ -199,7 +199,7 @@ Assuntos a serem explorados:
 <details open><summary>...</summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/%25var_pop_rua_uf.PNG" align="left"
-     alt="pop_rua_porte">
+     alt="%var_pop_rua_uf">
 
 ***Resposta:** <br>De 2018 a 2021, Roraima e Bahia viram suas populações de moradores de rua crescerem em 88% e 86%, enquanto Alagoas e Acre tiveram reduções de -23% e -13%. São Paulo e Rio Grande do Sul permaneceram relativamente estáveis em termos proporcionais.*
 
