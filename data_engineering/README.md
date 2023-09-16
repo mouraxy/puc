@@ -31,6 +31,15 @@ Assuntos a serem explorados:
 
 **1.1** Por município?
 
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/pop_rua_municipios.PNG" align="left"
+     alt="pop_rua_porte">
+
+<br>
+
+***Resposta:** <br> A maior parte dos moradores em situação de rua estão concentrados em municipios classificados pelo IBGE como metropoles ou cidades grandes.*
+
+<br><br><br><br><br><br><br><br><br><br>
+
 **1.2** Por porte municipal?
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/pop_rua_porte.PNG" align="left"
@@ -44,6 +53,15 @@ Assuntos a serem explorados:
 
 **1.3** Por unidade federativa?
 
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/pop_rua_uf.PNG" align="left"
+     alt="pop_rua_porte">
+
+<br>
+
+***Resposta:** <br> A maior parte dos moradores em situação de rua estão concentrados em municipios classificados pelo IBGE como metropoles ou cidades grandes.*
+
+<br><br><br><br><br><br><br><br><br><br>
+
 </details>
 
 
@@ -52,6 +70,13 @@ Assuntos a serem explorados:
 <details><summary>...</summary>
 
 **2.1** Por município?
+
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/%25pop_rua_municipios.PNG" align="left"
+     alt="historico_pop_rua">
+
+***Resposta:** <br> Com os dados mais recentes obtidos em 2021, são registrados em território brasileiro 158.057 moradores em situação de rua.*
+
+<br><br><br><br><br><br><br><br><br><br>
 
 **2.2** Por porte municipal?
 
@@ -65,6 +90,13 @@ Assuntos a serem explorados:
 <br><br><br><br><br><br><br><br><br><br>
 
 **2.3** Por unidade federativa?
+
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/%25pop_rua_uf.PNG" align="left"
+     alt="historico_pop_rua">
+
+***Resposta:** <br> Com os dados mais recentes obtidos em 2021, são registrados em território brasileiro 158.057 moradores em situação de rua.*
+
+<br><br><br><br><br><br><br><br><br><br>
 
 </details>
 
