@@ -22,7 +22,7 @@ Assuntos a serem explorados:
 ***Resposta:** <br>De acordo com os dados mais recentes, que datam de 2021, o Brasil contava com 158.057 pessoas em situação de rua, refletindo uma diminuição em relação ao ápice observado em 2020, quando o número atingiu 194.824 indivíduos. Essas informações foram coletadas pelas administrações municipais e consolidadas por meio de uma colaboração entre o Ministério da Cidadania e o Observatório Brasileiro de Políticas Públicas.*
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/link.svg" align="center" align="left" 
-     alt="acessar-dados">  Acessar os dados
+     alt="acessar-dados"> [‎ Acessar os dados...](https://github.com/mouraxy/puc/blob/main/data_engineering/consultas/historico_pop_rua.csv)
 
 <br>
 
@@ -38,8 +38,8 @@ Assuntos a serem explorados:
 <br><br><br><br>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/link.svg" align="center" align="left" 
-     alt="acessar-dados">  Acessar os dados
-
+     alt="acessar-dados"> [‎ Acessar os dados...](https://github.com/mouraxy/puc/blob/main/data_engineering/consultas/pop_rua_municipios.csv)
+     
 <br>
 
 </details>
@@ -56,8 +56,8 @@ Assuntos a serem explorados:
 <br><br><br><br>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/link.svg" align="center" align="left" 
-     alt="acessar-dados">  Acessar os dados
-
+     alt="acessar-dados"> [‎ Acessar os dados...](https://github.com/mouraxy/puc/blob/main/data_engineering/consultas/pop_rua_porte.csv)
+     
 <br>
 
 </details>
@@ -74,8 +74,8 @@ Assuntos a serem explorados:
 <br>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/link.svg" align="center" align="left" 
-     alt="acessar-dados">  Acessar os dados
-
+     alt="acessar-dados"> [‎ Acessar os dados...](https://github.com/mouraxy/puc/blob/main/data_engineering/consultas/pop_rua_uf.csv)
+     
 <br>
 
 </details>
@@ -98,8 +98,8 @@ Assuntos a serem explorados:
 <br><br>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/link.svg" align="center" align="left" 
-     alt="acessar-dados">  Acessar os dados
-
+     alt="acessar-dados"> [‎ Acessar os dados...](https://github.com/mouraxy/puc/blob/main/data_engineering/consultas/%25pop_rua_municipios.csv)
+     
 <br>
 
 </details>
@@ -116,15 +116,15 @@ Assuntos a serem explorados:
 <br>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/link.svg" align="center" align="left" 
-     alt="acessar-dados">  Acessar os dados
-
+     alt="acessar-dados"> [‎ Acessar os dados...](https://github.com/mouraxy/puc/blob/main/data_engineering/consultas/%25pop_rua_porte.csv)
+     
 <br>
 
 </details>
 
 **2.3** Por unidade federativa?
 
-<details open><summary>...</summary>
+<details><summary>...</summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/%25pop_rua_uf.PNG" align="left"
      alt="%pop_rua_uf">
@@ -134,8 +134,8 @@ Assuntos a serem explorados:
 <br><br><br><br><br>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/link.svg" align="center" align="left" 
-     alt="acessar-dados">  Acessar os dados
-
+     alt="acessar-dados"> [‎ Acessar os dados...](https://github.com/mouraxy/puc/blob/main/data_engineering/consultas/%25pop_rua_uf.csv)
+     
 <br>
 
 </details>
@@ -154,8 +154,8 @@ Assuntos a serem explorados:
 <br><br><br><br>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/link.svg" align="center" align="left" 
-     alt="acessar-dados">  Acessar os dados
-
+     alt="acessar-dados"> [‎ Acessar os dados...](https://github.com/mouraxy/puc/blob/main/data_engineering/consultas/historico_%25var_pop_rua.csv)
+     
 <br>
 
 **3.1** Por município (n25)?
@@ -170,8 +170,8 @@ Assuntos a serem explorados:
 <br><br><br>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/link.svg" align="center" align="left" 
-     alt="acessar-dados">  Acessar os dados
-
+     alt="acessar-dados"> [‎ Acessar os dados...](https://github.com/mouraxy/puc/blob/main/data_engineering/consultas/%25var_pop_rua_municipios.csv)
+     
 <br>
 
 </details>
@@ -188,15 +188,15 @@ Assuntos a serem explorados:
 <br><br><br>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/link.svg" align="center" align="left" 
-     alt="acessar-dados">  Acessar os dados
-
+     alt="acessar-dados"> [‎ Acessar os dados...](https://github.com/mouraxy/puc/blob/main/data_engineering/consultas/%25var_pop_rua_porte.csv)
+     
 <br>
 
 </details>
 
 **3.3** Por unidade federativa?
 
-<details open><summary>...</summary>
+<details><summary>...</summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/%25var_pop_rua_uf.PNG" align="left"
      alt="%var_pop_rua_uf">
@@ -206,8 +206,8 @@ Assuntos a serem explorados:
 <br><br><br><br>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/link.svg" align="center" align="left" 
-     alt="acessar-dados">  Acessar os dados
-
+     alt="acessar-dados"> [‎ Acessar os dados...](https://github.com/mouraxy/puc/blob/main/data_engineering/consultas/%25var_pop_rua_uf.csv)
+     
 <br>
 
 </details>
@@ -222,7 +222,7 @@ Assuntos a serem explorados:
      
 </details>
 
-<br><br>
+<br>
 
 #### Econômicos: associar o percentual médio de desempregados com as oscilações históricas dos desabrigados.
 
@@ -238,8 +238,8 @@ Assuntos a serem explorados:
 <br><br><br><br><br><br>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/link.svg" align="center" align="left" 
-     alt="acessar-dados">  Acessar os dados
-
+     alt="acessar-dados"> [‎ Acessar os dados...](https://github.com/mouraxy/puc/blob/main/data_engineering/consultas/historico_tx_desemprego.csv)
+     
 <br>
 
 </details>
@@ -256,19 +256,19 @@ Assuntos a serem explorados:
 <br>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/link.svg" align="center" align="left" 
-     alt="acessar-dados">  Acessar os dados
-
+     alt="acessar-dados"> [‎ Acessar os dados...](https://github.com/mouraxy/puc/blob/main/data_engineering/consultas/%25var_tx_desemprego.csv)
+     
 <br>
 
 </details>
 
-<br><br>
+<br>
 
 #### Climáticos: identificar situações climáticas adversas, associadas ao risco hipotérmico e suscetibilidade a doenças.
 
 **1.** Para os 25 municípios com as maiores concentrações de moradores em situação de rua...
 
-<details open><summary>...</summary>
+<details><summary>...</summary>
 
 **1.1** Quais experimentam mais dias frios (< 13ºC) ao longo do ano, em média?
 
@@ -278,8 +278,8 @@ Assuntos a serem explorados:
 ***Resposta:** <br> Em média, de 2019 a 2022, cidades como Sorocaba, Osasco, Porto Alegre, Campinas, São Bernardo, Guarulhos e São Paulo registraram mais de 40 dias com temperaturas mínimas inferiores a 13°C. Curitiba teve o maior valor, com 134 dias.<br><br>Em resumo, 90.479 pessoas (57,25% de toda a população em situação de rua do Brasil) estariam suscetíveis à hipotermia em 10% dos dias do ano.*
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/link.svg" align="center" align="left" 
-     alt="acessar-dados">  Acessar os dados
-
+     alt="acessar-dados"> [‎ Acessar os dados...](https://github.com/mouraxy/puc/blob/main/data_engineering/consultas/temp_inf_13_municipios.csv)
+     
 <br>
 
 **1.2** Quais destes são mais suscetíveis a enchentes (> 50mm) ao longo do ano, em média?
@@ -292,8 +292,8 @@ Assuntos a serem explorados:
 <br><br>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/link.svg" align="center" align="left" 
-     alt="acessar-dados">  Acessar os dados
-
+     alt="acessar-dados"> [‎ Acessar os dados...](https://github.com/mouraxy/puc/blob/main/data_engineering/consultas/pluv_sup_50_municipios.csv)
+     
 <br>
 
 </details>
