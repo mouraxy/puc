@@ -318,7 +318,7 @@ Foram compiladas 1773 tabelas provenientes da internet com formatos e estruturas
 | 2019.zip                                          | [Baixar](https://portal.inmet.gov.br/uploads/dadoshistoricos/2019.zip)             | 117,560,201     |
 | 2020.zip                                          | [Baixar](https://portal.inmet.gov.br/uploads/dadoshistoricos/2020.zip)             | 103,653,055     |
 | 2021.zip                                          | [Baixar](https://portal.inmet.gov.br/uploads/dadoshistoricos/2021.zip)             | 80,571,564      |
-| AR_BR_RG_UF_RGINT_MES_MIC_MUN_2022.xls            | [Baixar](https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/15761-areas-dos-municipios.html)             | 1,095,168       |
+| AR_BR_RG_UF_RGINT_MES_MIC_MUN_2022.xls            | [Baixar](https://geoftp.ibge.gov.br/organizacao_do_territorio/estrutura_territorial/areas_territoriais/2022/AR_BR_RG_UF_RGINT_MES_MIC_MUN_2022.xls)             | 1,095,168       |
 | POP2022_Municipios_20230622.xls                   | [Baixar](https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Previa_da_Populacao/POP2022_Municipios_20230622.xls) | 757,760         |
 | Lista_Municipios_com_IBGE_Brasil_Versao_CSV.csv   | [Baixar](http://blog.mds.gov.br/redesuas/wp-content/uploads/2018/06/Lista_Munic%C3%ADpios_com_IBGE_Brasil_Versao_CSV.csv) | 448,527         |
 | municipios_serie_historica_pop_rua.csv           | [Baixar](https://obpoprua.direito.ufmg.br/tabelas/municipios_serie_historica_pop_rua.xlsx) | 430,606         |
@@ -411,16 +411,40 @@ Para garantir a integridade dos dados e evitar possíveis erros de conexão, imp
   | 4  | id_regiao                                    |inteiro| 1            | 5            | [SNAS²](http://blog.mds.gov.br/redesuas/wp-content/uploads/2018/06/Lista_Munic%C3%ADpios_com_IBGE_Brasil_Versao_CSV.csv) |
   | 5  | latitude                                     |decimal| -33,69       | 4,60         | [Github](https://raw.githubusercontent.com/kelvins/Municipios-Brasileiros/main/csv/municipios.csv)                       |
   | 6  | longitude                                    |decimal‎|‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ -72,90‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ | -32,41       | [Github](https://raw.githubusercontent.com/kelvins/Municipios-Brasileiros/main/csv/municipios.csv)                       |
-  | 7  | pop_censo_2010‎‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎  ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎  ‎ ‎ ‎ ‎ ‎   |inteiro| 805          |‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ 11.253.503‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ | [SNAS²](http://blog.mds.gov.br/redesuas/wp-content/uploads/2018/06/Lista_Munic%C3%ADpios_com_IBGE_Brasil_Versao_CSV.csv) |
-  | 7  | pop_censo_2022‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎| inteiro      | -            | -            | [IBGE¹](https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Previa_da_Populacao/POP2022_Municipios_20230622.xls)          |
-  | 8  | pop_rua                                      | inteiro       | 0            | 48.134       | [UFMG³](https://obpoprua.direito.ufmg.br/tabelas/municipios_serie_historica_pop_rua.xlsx)                        |
-  | 9  | pop_rua_ano                                  | inteiro       |     2012     | 2021         | [UFMG³](https://obpoprua.direito.ufmg.br/tabelas/municipios_serie_historica_pop_rua.xlsx)                        |
-  
+  | 7  | area_municipio                                    |decimal‎|‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ 3,565‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ | 159.533,306       | [IBGE¹](https://geoftp.ibge.gov.br/organizacao_do_territorio/estrutura_territorial/areas_territoriais/2022/AR_BR_RG_UF_RGINT_MES_MIC_MUN_2022.xls)                       |
+  | 8  | pop_censo_2010‎‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎  ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎  ‎ ‎ ‎ ‎ ‎   |inteiro| 805          |‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ 11.253.503‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ | [SNAS²](http://blog.mds.gov.br/redesuas/wp-content/uploads/2018/06/Lista_Munic%C3%ADpios_com_IBGE_Brasil_Versao_CSV.csv) |
+  | 9  | pop_censo_2022‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎| inteiro      | 836            | 12.200.180            | [IBGE¹](https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Previa_da_Populacao/POP2022_Municipios_20230622.xls)          |
+  | 10  | pop_rua                                      | inteiro       | 0            | 48.134       | [UFMG³](https://obpoprua.direito.ufmg.br/tabelas/municipios_serie_historica_pop_rua.xlsx)                        |
+  | 11  | pop_rua_ano                                  | inteiro       |     2012     | 2021         | [UFMG³](https://obpoprua.direito.ufmg.br/tabelas/municipios_serie_historica_pop_rua.xlsx)                        |
+  | 12  | taxa_desemprego_media                                  | decimal       |     6,875     | 13,5         | [IBGE¹](https://www.ibge.gov.br/estatisticas/sociais/trabalho/9173-pesquisa-nacional-por-amostra-de-domicilios-continua-trimestral.html?=&t=series-historicas&utm_source=landing&utm_medium=explica&utm_campaign=desemprego)                        |
+  | 13  | estacao_meteorologica                                  | texto       |     -     | -         | [INMET⁴](https://portal.inmet.gov.br/dadoshistoricos)           
+  | 14  | temp_sub_13                                 | decimal       |     0     | 247         | [INMET⁴](https://portal.inmet.gov.br/dadoshistoricos)  
+  | 15  | pluv_sup_50                                  | decimal       |     0     | 12,5         | [INMET⁴](https://portal.inmet.gov.br/dadoshistoricos)  
+
   <sub>¹ Instituto Brasileiro de Geografia e Estatística<br>
   ² Sistema Nacional de Assistência Social<br>
   ³ Universidade Federal de Minas Gerais<br>
+  ⁴ Instituto Nacional de Meteorologia<br>
   </sub>
-  
+
+| id  | descricao                                       |
+| --- |:----------------------------------------------- |
+| 1   | Identificador único do município brasileiro.|
+| 2   | Identificador do porte do município.             |
+| 3   | Identificador da unidade federativa (UF).        |
+| 4   | Identificador da região geográfica.              |
+| 5   | Latitude da localização do município.           |
+| 6   | Longitude da localização do município.          |
+| 7   | Área do município em quilômetros quadrados.     |
+| 8   | População municipal no censo de 2010.           |
+| 9   | População municipal no censo de 2022.            |
+| 10  | População em situação de rua.                    |
+| 11  | Ano da estimativa da população em situação de rua.|
+| 12  | Taxa média de desemprego.                        |
+| 13  | Estação meteorológica utilizada (por proximidade ao municipio). |
+| 14  | Médias de dias em que foram registradas temperaturas abaixo de 13°C na estação meteorológica.‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎  ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎  ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ |
+| 15  | Médias de dias em que a precipitação pluviométrica ultrapassou 50mm na estação meteorológica. |
+
   </details>
 
   </dd>
