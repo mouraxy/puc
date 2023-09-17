@@ -1,5 +1,5 @@
 **Dispersão dos moradores de rua no Brasil sob a perspectiva geoespacial e multidimensional.**             
-`Última atualização: 16/09/2023 as 03:08.` 
+`Última atualização: 17/09/2023 as 01:38.` 
 
 
 ## Objetivo(s)/resultados...
