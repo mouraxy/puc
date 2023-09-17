@@ -1,5 +1,5 @@
 **Dispersão dos moradores de rua no Brasil sob a perspectiva geoespacial e multidimensional.**             
-`Última atualização: 15/09/2023 as 03:08.` 
+`Última atualização: 16/09/2023 as 03:08.` 
 
 
 ## Objetivo(s)/resultados...
@@ -160,7 +160,7 @@ Assuntos a serem explorados:
 
 **3.1** Por município (n25)?
 
-<details><summary>...</summary>
+<details open><summary>...</summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/%25var_pop_rua_municipios.PNG" align="left"
      alt="%var_pop_rua_municipios">
@@ -311,20 +311,36 @@ Assuntos a serem explorados:
 <details open><summary>Dados e armazenamento...</summary>
 <br>
 
-Foram compilados 1773 conjuntos de dados provenientes da internet (**[clique aqui para acessar](https://github.com/mouraxy/puc/tree/main/data_engineering/data_lake)**) com formatos e estruturas diversas. Esta seleção objetivou emular cenários realistas de engenharia de dados, os quais frequentemente transcendem tabelas simples com dados homogêneos.
+Foram compiladas 1773 tabelas provenientes da internet com formatos e estruturas diversas. Esta seleção objetivou emular cenários realistas de engenharia de dados, os quais frequentemente transcendem tabelas simples com dados homogêneos.
 
-Os dados climáticos provenientes das estações meteorológicas automáticas (EMA) podem ser acessados através do **[INMET](https://portal.inmet.gov.br/dadoshistoricos)**.
-
-
+| arquivo                                   | fonte                                                                                    | tamanho (bytes) |
+|:---------------------------------------------------|:----------------------------------------------------------------------------------------:|:-----------------:|
+| 2019.zip                                          | [Baixar](https://portal.inmet.gov.br/uploads/dadoshistoricos/2019.zip)             | 117,560,201     |
+| 2020.zip                                          | [Baixar](https://portal.inmet.gov.br/uploads/dadoshistoricos/2020.zip)             | 103,653,055     |
+| 2021.zip                                          | [Baixar](https://portal.inmet.gov.br/uploads/dadoshistoricos/2021.zip)             | 80,571,564      |
+| AR_BR_RG_UF_RGINT_MES_MIC_MUN_2022.xls            | [Baixar](https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/15761-areas-dos-municipios.html)             | 1,095,168       |
+| POP2022_Municipios_20230622.xls                   | [Baixar](https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Previa_da_Populacao/POP2022_Municipios_20230622.xls) | 757,760         |
+| Lista_Municipios_com_IBGE_Brasil_Versao_CSV.csv   | [Baixar](http://blog.mds.gov.br/redesuas/wp-content/uploads/2018/06/Lista_Munic%C3%ADpios_com_IBGE_Brasil_Versao_CSV.csv) | 448,527         |
+| municipios_serie_historica_pop_rua.csv           | [Baixar](https://obpoprua.direito.ufmg.br/tabelas/municipios_serie_historica_pop_rua.xlsx) | 430,606         |
+| municipios.csv                                    | [Baixar](https://raw.githubusercontent.com/kelvins/Municipios-Brasileiros/main/csv/municipios.csv) | 390,119         |
+| 20230827084621.csv‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎                                | [Baixar‎](https://www.ibge.gov.br/estatisticas/sociais/trabalho/9173-pesquisa-nacional-por-amostra-de-domicilios-continua-trimestral.html?=&t=series-historicas&utm_source=landing&utm_medium=explica&utm_campaign=desemprego) | ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ 3,020 ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎  |
 
 ## Pipeline ...
 
 Todos os conjuntos de dados foram armazenados no `Data Lake Storage Gen2`, o Datalake da Microsoft. Para essa etapa, foi utilizado o `Azure Data Factory`, uma ferramenta para criar pipelines de ingestão automatizada.
 
   > <b>...</b> <br>
-O pipeline centralizou todos os seis conjuntos de dados com diferentes fontes e formatos no Data Lake.
+O pipeline centralizou os conjuntos de dados com diferentes fontes e formatos no Data Lake (exceto das EMA's, devido a quantidade de arquivos).
 
-<!--
+<details><summary><b>Ver pipeline...</b></summary>
+
+<img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/pipeline.PNG" align="left"
+     alt="pipeline">
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</details>
+
 #### Erros de conexão...
 
 Para garantir a integridade dos dados e evitar possíveis erros de conexão, implementou-se um tratamento de erros. Um aplicativo lógico foi configurado para monitorar a conexão e, caso ocorressem problemas, acionaria uma notificação por e-mail.
@@ -360,8 +376,6 @@ Para garantir a integridade dos dados e evitar possíveis erros de conexão, imp
   </dd>
 </dl>
 
--->
-
 </details>
 
   </dd>
@@ -383,7 +397,7 @@ Para garantir a integridade dos dados e evitar possíveis erros de conexão, imp
   
   </details>
   
-  <details><summary>Metadados...</summary>
+  <details open><summary>Metadados...</summary>
 
   ## Catálogo de dados...
   Um catálogo ou dicionário de dados é uma estrutura de governança e consiste em uma compilação de metadados em uma disposição informacional.
