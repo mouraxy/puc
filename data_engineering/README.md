@@ -471,8 +471,11 @@ Recuperar os dados do contêiner (diretório) associado ao Data Lake da Azure.
 <details><summary>Mostrar código...</summary>
 
 ```py
-dbutils.fs.mount(source = "wasbs://puc@datalakenoblesix.blob.core.windows.net", mount_point = "/mnt/puc",
-                 extra_configs = {"fs.azure.account.key.datalakenoblesix.blob.core.windows.net":"chave-de-acesso"})
+# Conectar-se ao Data Lake...
+dbutils.fs.mount( 
+    source = "wasbs://dados@engdadosmvp.blob.core.windows.net", 
+    mount_point = "/mnt/dados",
+    extra_configs = {"fs.azure.account.key.engdadosmvp.blob.core.windows.net":"chave-de-acesso"})
 ```
 
 </details>
@@ -487,26 +490,107 @@ Criar DataFrames/visualizações temporárias com os dados do DL para tratativas
 <details><summary>Mostrar código...</summary>
 
 ```py
-df_moradores_rua = spark.read.format("csv")\
-                                  .option("sep", ",")\
-                                  .option("header", "true")\
-                                  .option("inferSchema", "true")\
-                                  .load("/mnt/puc/mvp/engenharia_dados/populacao_sem_teto.csv")
-
-df_moradores_rua.createOrReplaceTempView("populacao_sem_teto")
-
-df_municipios = spark.read.format("csv")\
-                                          .option("sep", ";")\
-                                          .option("header", "true")\
-                                          .option("inferSchema", "true")\
-                                          .option("encoding", "ISO-8859-1")\
-                                          .load("/mnt/puc/mvp/engenharia_dados/municipios.csv")
-
 df_coordenadas_dos_municipios = spark.read.format("csv")\
                                           .option("sep", ",")\
                                           .option("header", "true")\
                                           .option("inferSchema", "true")\
-                                          .load("/mnt/puc/mvp/engenharia_dados/dim_coordenadas_municipios.csv")
+                                          .load("/mnt/dados/municipios.csv")
+```
+
+```py
+df_pop_censo_2022 = pd.read_excel('/dbfs/mnt/dados/POP2022_Municipios_20230622.xls',
+                    skiprows=1,
+                            dtype={
+                                'COD. UF':str,
+                                'COD. MUNIC':str,
+                                'POPULAÇÃO':str
+                            }                   
+).dropna(thresh=2)
+
+df_area_munic = pd.read_excel('/dbfs/mnt/dados/AR_BR_RG_UF_RGINT_MES_MIC_MUN_2022.xls', 
+                      sheet_name='AR_BR_MUN_2022', 
+                      usecols=[4, 6]
+)
+
+df_taxa_desemprego_media = pd.read_csv("/dbfs/mnt/dados/20230827084621.csv",
+                        sep = ';',
+                        skiprows=1,
+).dropna().transpose()
+
+```
+
+```py
+PASTA_CAMINHO = '/dbfs/mnt/dados/'
+ARQUIVOS = ['2019', '2020', '2021', '2022']
+
+df_estacao_meteorologica = pd.read_csv(f'{PASTA_CAMINHO}{"estacoes_meteorologicas_br.csv"}',
+                             sep=';'
+)
+
+def processar_arquivos(caminho_arquivo):
+    tabelas = []
+    nomes_arquivos = []
+    total_linhas = []
+
+    with zipfile.ZipFile(caminho_arquivo) as z:
+        for nome_arquivo_interno in z.namelist():
+            if nome_arquivo_interno.endswith('.CSV'):
+                with z.open(nome_arquivo_interno) as f:
+                    df = pd.read_csv(
+                        f,
+                        sep=';',
+                        skiprows=8,
+                        encoding='cp1252',
+                        usecols=[0, 2, 10],
+                        dtype={0: 'str', 2: 'float', 10: 'float'},
+                        decimal=','
+                    )
+
+                    df['Nome_Arquivo'] = nome_arquivo_interno
+                    nomes_arquivos.append(nome_arquivo_interno)
+                    tabelas.append(df)
+                    total_linhas.append(len(df))
+
+    return tabelas, nomes_arquivos, total_linhas 
+
+def main():
+    tabelas_total = []
+    nomes_arquivos_total = []
+    df_log_data = []
+
+    for nome_arquivo in os.listdir(PASTA_CAMINHO):
+        if any(ano in nome_arquivo for ano in ARQUIVOS) and nome_arquivo.endswith('.zip'):
+            caminho_zip = os.path.join(PASTA_CAMINHO, nome_arquivo)
+            tabelas, nomes_arquivos, total_linhas = processar_arquivos(caminho_zip)
+
+            df_log_data.extend([{'nomes_arquivos_lidos': nome_arquivo, 'total_linhas': total_linhas_tabela}
+                                for nome_arquivo, total_linhas_tabela in zip(nomes_arquivos, total_linhas)])
+
+            tabelas_total.extend(tabelas)
+            nomes_arquivos_total.extend(nomes_arquivos)
+
+    df_log = pd.DataFrame(df_log_data)
+    return tabelas_total
+
+if __name__ == "__main__":
+    tabelas_total = main()
+    df_inmet = pd.concat(tabelas_total, ignore_index=True)
+```
+
+```py
+df_pop_rua = spark.read.format("csv")\
+                                  .option("sep", ";")\
+                                  .option("header", "true")\
+                                  .option("inferSchema", "true")\
+                                  .load("/mnt/dados/municipios_serie_historica_pop_rua.csv")
+```
+
+```py
+df_pop_censo_2010 = spark.read.format("csv")\
+                                          .option("sep", ";")\
+                                          .option("header", "true")\
+                                          .option("inferSchema", "true") \
+                                          .load("/mnt/dados/Lista_Municípios_com_IBGE_Brasil_Versao_CSV.csv")
 ```
 
 </details>
@@ -521,30 +605,165 @@ A criação de um DW nesse esquema facilitará substancialmente o trabalho no Po
 <details><summary>Mostrar código...</summary>
 
 ```py
-colunas_para_excluir = ['ConcatUF+Mun', 'IBGE', 'Capital', '_c9']
-df_municipios = df_municipios.drop(*colunas_para_excluir)
+def transformar_nome_arquivo(nome):
+    return nome.split('_')[4]
 
-df_municipios = df_municipios.withColumnRenamed('IBGE7', 'id_municipio')\
+def main():
+    df_inmet['Data'] = pd.to_datetime(df_inmet['Data'])
+    df_inmet['Ano'] = df_inmet['Data'].dt.year
+
+    pluviosidade_por_dia_filtrado = (
+        df_inmet.groupby(['Data', 'Ano', 'Nome_Arquivo'])['PRECIPITAÇÃO TOTAL, HORÁRIO (mm)']
+        .sum()
+        .reset_index()
+    )
+    
+    pluviosidade_por_dia_filtrado = pluviosidade_por_dia_filtrado[pluviosidade_por_dia_filtrado['PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] > 50]
+    pluviosidade_por_dia_filtrado['Nome_Arquivo'] = pluviosidade_por_dia_filtrado['Nome_Arquivo'].apply(transformar_nome_arquivo)
+    pluviosidade_por_dia_filtrado['id_dt_municipio'] = pluviosidade_por_dia_filtrado['Data'].astype(str) + pluviosidade_por_dia_filtrado['Nome_Arquivo']
+    pluviosidade_por_dia_filtrado.drop_duplicates(subset='id_dt_municipio', inplace=True)
+    
+    resumo_pluviosidade = (
+        pluviosidade_por_dia_filtrado.groupby(['Nome_Arquivo'])
+        .size()
+        .reset_index(name='dias_precip_>50mm')
+    )
+    
+    resumo_pluviosidade['pluv_sup_50'] = (resumo_pluviosidade['dias_precip_>50mm']/len(ARQUIVOS)).astype(str)
+    resumo_pluviosidade['pluv_sup_50'] = resumo_pluviosidade['pluv_sup_50'].str.replace('.', ',')
+
+    temperatura_abaixo_de_13 = df_inmet[df_inmet['TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] < 13]
+    temperatura_abaixo_de_13['Nome_Arquivo'] = temperatura_abaixo_de_13['Nome_Arquivo'].apply(transformar_nome_arquivo)
+    temperatura_abaixo_de_13['Data'] = temperatura_abaixo_de_13['Data'].astype(str)
+    temperatura_abaixo_de_13['id_dt'] = temperatura_abaixo_de_13['Data'] + temperatura_abaixo_de_13['Nome_Arquivo']
+    temperatura_abaixo_de_13 = temperatura_abaixo_de_13.drop_duplicates(subset=['id_dt'])
+    
+    resumo_temperatura_baixa = (
+          temperatura_abaixo_de_13.groupby(['Nome_Arquivo'])
+          .size()
+          .reset_index(name='dias_temp_<13')
+    )
+
+    resumo_temperatura_baixa['temp_sub_13'] = (resumo_temperatura_baixa['dias_temp_<13'] / len(ARQUIVOS))
+    limite_sup = resumo_temperatura_baixa['temp_sub_13'].mean() + 3.5*resumo_temperatura_baixa['temp_sub_13'].std()
+    limite_inf = resumo_temperatura_baixa['temp_sub_13'].mean() - 3.5*resumo_temperatura_baixa['temp_sub_13'].std()
+    resumo_temperatura_baixa = resumo_temperatura_baixa.loc[(resumo_temperatura_baixa['temp_sub_13'] <= limite_sup) & (resumo_temperatura_baixa['temp_sub_13'] >= limite_inf)]
+    resumo_temperatura_baixa['temp_sub_13'] = resumo_temperatura_baixa['temp_sub_13'].astype(str)
+    resumo_temperatura_baixa['temp_sub_13'] = resumo_temperatura_baixa['temp_sub_13'].str.replace('.', ',')
+
+    return resumo_temperatura_baixa, resumo_pluviosidade
+
+if __name__ == "__main__":
+    resumo_temperatura_baixa, resumo_pluviosidade = main()
+    main()
+```
+
+```py
+df_coord_municipios = df_coordenadas_dos_municipios.toPandas()
+
+manter_colunas = ['ESTACAO','LATITUDE', 'UF', 'LONGITUDE', 
+                     'temp_sub_13', 'pluv_sup_50']  
+
+df_unificado = pd.merge(df_estacao_meteorologica, resumo_temperatura_baixa, left_on='ESTACAO', right_on='Nome_Arquivo', how='left')
+df_unificado = pd.merge(df_unificado, resumo_pluviosidade, left_on='ESTACAO', right_on='Nome_Arquivo', how='left')
+
+df_unificado = df_unificado[manter_colunas]
+df_unificado['ESTACAO'] = df_unificado['ESTACAO'].apply(lambda x: "ESTACAO METEOROLOGICA " + x)
+df_unificado['LATITUDE'] = df_unificado['LATITUDE'].str.replace(',', '.')
+df_unificado['LONGITUDE'] = df_unificado['LONGITUDE'].str.replace(',', '.')
+
+def encontrar_estacao_mais_proxima(linha):
+    distancias = df_unificado.apply(
+        lambda r: great_circle((linha['latitude'], linha['longitude']), (r['LATITUDE'], r['LONGITUDE'])).kilometers,
+        axis=1
+    )
+    indice_mais_proximo = distancias.idxmin()
+    linha_mais_proxima = df_unificado.loc[indice_mais_proximo]
+    return (
+        linha_mais_proxima['ESTACAO'],
+        linha_mais_proxima['temp_sub_13'],
+        linha_mais_proxima['pluv_sup_50']
+    )
+
+resultados = df_coord_municipios.apply(encontrar_estacao_mais_proxima, axis=1)
+df_coord_municipios[[
+    'ESTACAO', 'temp_sub_13', 'pluv_sup_50'
+]] = pd.DataFrame(
+    resultados.to_list(),
+    columns=['ESTACAO', 'temp_sub_13', 'pluv_sup_50']
+)
+
+df_coord_municipios = spark.createDataFrame(df_coord_municipios)
+df_coord_municipios = df_coord_municipios.withColumnRenamed('ESTACAO', 'estacao_meteorologica')
+df_coord_municipios.createOrReplaceTempView('DIM_COORD_MUNICIPIOS')
+```
+
+```py
+df_pop_censo_2022['POPULAÇÃO'] = df_pop_censo_2022['POPULAÇÃO'].str.replace('.', '')
+df_pop_censo_2022['POPULAÇÃO'] = df_pop_censo_2022['POPULAÇÃO'].str.split('(', expand=True)[0]
+df_pop_censo_2022['POPULAÇÃO'] = df_pop_censo_2022['POPULAÇÃO'].astype(int)
+
+df_pop_censo_2022["id_municipio"] = df_pop_censo_2022["COD. UF"] + df_pop_censo_2022["COD. MUNIC"]
+df_pop_censo_2022.rename(columns={'POPULAÇÃO': 'pop_censo_2022'}, inplace=True)
+df_pop_censo_2022['pop_censo_2022'] = df_pop_censo_2022['pop_censo_2022'].astype(float).astype(int)
+df_pop_censo_2022 = spark.createDataFrame(df_pop_censo_2022)
+df_pop_censo_2022.createOrReplaceTempView('DIM_POP_CENSO_2022')
+
+df_area_munic = spark.createDataFrame(df_area_munic)
+df_area_munic.createOrReplaceTempView('DIM_AREA_MUNIC')
+
+df_taxa_desemprego_media = df_taxa_desemprego_media.reset_index()
+df_taxa_desemprego_media.columns = ['ano', 'taxa_desemprego']
+df_taxa_desemprego_media['ano'] = df_taxa_desemprego_media['ano'].str.split().str[-1]
+df_taxa_desemprego_media = df_taxa_desemprego_media.groupby(['ano'])['taxa_desemprego'].mean().reset_index()
+df_taxa_desemprego_media.rename(columns={'taxa_desemprego': 'taxa_desemprego_media'}, inplace=True)
+df_taxa_desemprego_media = spark.createDataFrame(df_taxa_desemprego_media)
+df_taxa_desemprego_media.createOrReplaceTempView('DIM_TAXA_DESEMPREGO_MEDIA')
+```
+
+```py
+colunas_para_excluir = ['_c0']
+df_pop_rua = df_pop_rua.drop(*colunas_para_excluir)
+
+df_pop_rua = df_pop_rua.withColumnRenamed('codigo_ibg', 'id_municipio')\
+                                             .withColumnRenamed('freq', 'pop_rua')\
+                                             .withColumnRenamed('ano', 'pop_rua_ano')
+
+df_pop_rua.createOrReplaceTempView("DIM_MORADORES_RUA")
+```
+
+```py
+colunas_para_excluir = ['ConcatUF+Mun', 'IBGE', 'Capital', '_c9']
+df_pop_censo_2010 = df_pop_censo_2010.drop(*colunas_para_excluir)
+
+df_pop_censo_2010 = df_pop_censo_2010.withColumnRenamed('IBGE7', 'id_municipio')\
                              .withColumnRenamed('UF', 'uf')\
                              .withColumnRenamed('Município', 'municipio')\
                              .withColumnRenamed('Região', 'regiao')\
-                             .withColumnRenamed('População 2010', 'populacao_censo_2010')\
+                             .withColumnRenamed('População 2010', 'pop_censo_2010')\
                              .withColumnRenamed('Porte', 'porte')
+                             
+df_pop_censo_2010.createOrReplaceTempView("MUNICIPIOS")
+```
 
-df_moradores_rua = df_moradores_rua.withColumnRenamed('populacao', 'moradores_rua')\
-                                             .withColumnRenamed('ano', 'ano_levantamento')
+</details>
 
-df_coordenadas_dos_municipios.createOrReplaceTempView("COORDENADAS_MUNICIPIOS")
-df_municipios.createOrReplaceTempView("MUNICIPIOS")
-df_moradores_rua.createOrReplaceTempView("MORADORES_RUA")
+<br>
 
-df_municipios_id = spark.sql(""" SELECT municipio
+`Star schema`
+Modificar a estrutura das tabelas para o modelo estrela.
+
+<details><summary>Mostrar código...</summary>
+
+```py
+# Criação das tabelas dimensão...
+df_pop_censo_2010_id = spark.sql(""" SELECT municipio
                           FROM MUNICIPIOS
                           ORDER BY municipio
 """)
 
-df_municipios_id = df_municipios_id.withColumn('id_municipio', monotonically_increasing_id()+1)
-df_municipios_id.createOrReplaceTempView("DIM_MUNICIPIOS")
+df_pop_censo_2010_id = df_pop_censo_2010_id.withColumn('id_municipio', monotonically_increasing_id()+1)
+df_pop_censo_2010_id.createOrReplaceTempView('DIM_MUNICIPIOS')
 
 df_regiao = spark.sql(""" SELECT DISTINCT regiao
                           FROM MUNICIPIOS
@@ -552,7 +771,7 @@ df_regiao = spark.sql(""" SELECT DISTINCT regiao
 """)
 
 df_regiao = df_regiao.withColumn('id_regiao', monotonically_increasing_id()+1)
-df_regiao.createOrReplaceTempView("DIM_REGIAO")
+df_regiao.createOrReplaceTempView('DIM_REGIAO')
 
 df_estado = spark.sql(""" SELECT DISTINCT uf
                           FROM MUNICIPIOS
@@ -560,7 +779,7 @@ df_estado = spark.sql(""" SELECT DISTINCT uf
 """)
 
 df_estado = df_estado.withColumn('id_uf', monotonically_increasing_id()+1)
-df_estado.createOrReplaceTempView("DIM_UNIDADE_FEDERATIVA")
+df_estado.createOrReplaceTempView('DIM_UNIDADE_FEDERATIVA')
 
 df_porte = spark.sql(""" SELECT DISTINCT porte
                           FROM MUNICIPIOS
@@ -568,23 +787,29 @@ df_porte = spark.sql(""" SELECT DISTINCT porte
 """)
 
 df_porte = df_porte.withColumn('id_porte', monotonically_increasing_id()+1)
-df_porte.createOrReplaceTempView("DIM_PORTE_MUNICIPIO")
+df_porte.createOrReplaceTempView('DIM_PORTE_MUNICIPIO')
+```
 
+```py
+# Criação da tabela fato...
 df_fato = spark.sql("""
                     SELECT 
-                        M.id_municipio, U.id_uf, R.id_regiao, C.latitude, C.longitude, P.id_porte,
-                        M.populacao_censo_2010, MR.moradores_rua, MR.ano_levantamento
-
+                        M.id_municipio, P.id_porte, U.id_uf, R.id_regiao, C.latitude, C.longitude, AR.area_municipio,
+                        M.pop_censo_2010, CXXII.pop_censo_2022, MR.pop_rua, MR.pop_rua_ano, TD.taxa_desemprego_media,
+                        C.estacao_meteorologica, C.temp_sub_13, C.pluv_sup_50
+                          
                         FROM MUNICIPIOS M
-                        LEFT JOIN MORADORES_RUA MR ON MR.id_municipio = M.id_municipio
-                        LEFT JOIN COORDENADAS_MUNICIPIOS C ON C.id_municipio = M.id_municipio
-                        LEFT JOIN DIM_REGIAO R ON R.regiao = M.regiao
-                        LEFT JOIN DIM_UNIDADE_FEDERATIVA U ON U.uf = M.uf
                         LEFT JOIN DIM_PORTE_MUNICIPIO P ON P.porte = M.porte
+                        LEFT JOIN DIM_UNIDADE_FEDERATIVA U ON U.uf = M.uf
+                        LEFT JOIN DIM_REGIAO R ON R.regiao = M.regiao
+                        LEFT JOIN DIM_COORD_MUNICIPIOS C ON C.codigo_ibge = M.id_municipio
+                        LEFT JOIN DIM_AREA_MUNIC AR ON AR.CD_MUN = M.id_municipio
+                        LEFT JOIN DIM_POP_CENSO_2022 CXXII ON CXXII.id_municipio = M.id_municipio
+                        LEFT JOIN DIM_MORADORES_RUA MR ON MR.id_municipio = M.id_municipio
+                        LEFT JOIN DIM_TAXA_DESEMPREGO_MEDIA TD ON TD.ano = MR.pop_rua_ano
 
                         ORDER BY M.id_municipio
 """)
-
 ```
 
 </details>
@@ -592,7 +817,7 @@ df_fato = spark.sql("""
 <br>
 
 `Carregar...`
-Importar os dados para o banco de dados SQL na nuvem. 
+Importar os dados para o banco de dados SQL na nuvem e para o Data Lake. 
 
   > <b>...</b> <br>
   Previamente, foi necessário preparar o ambiente na Azure por meio das instruções DDL. Você pode acessá-las **[aqui!](https://github.com/mouraxy/puc/blob/main/data_engineering/sql/ddl.sql)**
@@ -600,22 +825,37 @@ Importar os dados para o banco de dados SQL na nuvem.
 <details><summary>Mostrar código...</summary>
 
 ```py
+# Enviar dados para o SQL
 def carga_sql(df, tabela):
     df.write.format("jdbc")\
             .mode("append")\
             .option("url", "jdbc:sqlserver://mouraxy.database.windows.net")\
             .option("port", "1433")\
             .option("user", "mouraxy")\
-            .option("password", "senha-banco-de-dados")\
+            .option("password", "**********")\
             .option("database", "bd_mouraxy")\
             .option("dbtable", tabela)\
             .save()
+```
 
-carga_sql(df_municipios_id, "DW.DIM_MUNICIPIO")
-carga_sql(df_regiao, "DW.DIM_REGIAO")
-carga_sql(df_estado, "DW.DIM_UNIDADE_FEDERATIVA")
-carga_sql(df_porte, "DW.DIM_PORTE_MUNICIPIO")
-carga_sql(df_fato, "DW.FACT_POP_RUA")
+```py
+# Enviar dados para o Data Lake...
+df_fato.coalesce(1)\
+    .write\
+    .format('csv')\
+    .mode('overwrite')\
+    .option("header", "true")\
+    .save('/mnt/dados/spark/')
+
+def mover_arquivos(extensao, origem, destino, novo_nome):
+    files = dbutils.fs.ls(origem)
+    for i in range (0, len(files)):
+        file = files[i].name
+        if extensao in file:
+            dbutils.fs.cp(files[i].path, destino+novo_nome+extensao)
+            print('Origem: '+file+'\nDestino: '+destino+novo_nome+extensao)
+
+mover_arquivos('.csv', '/mnt/dados/spark/', '/mnt/dados/dw/', 'FACT_POP_RUA')
 ```
 
 </details>
@@ -631,7 +871,7 @@ carga_sql(df_fato, "DW.FACT_POP_RUA")
                
   </details>
 
-  <details><summary>Solução do problema...</summary>
+  <details><summary>Comentários finais...</summary>
                           
   </details>
 
