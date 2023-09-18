@@ -1,5 +1,5 @@
 **Dispersão dos moradores de rua no Brasil sob a perspectiva geoespacial e multidimensional.**             
-`Última atualização: 17/09/2023 as 01:38.` 
+`Última atualização: 17/09/2023 as 22:44.` 
 
 
 ## Objetivo(s)/resultados...
@@ -165,7 +165,7 @@ Assuntos a serem explorados:
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/%25var_pop_rua_municipios.PNG" align="left"
      alt="%var_pop_rua_municipios">
 
-***Resposta:** <br>No período de 2018 a 2022, Porto Alegre e Goiânia se destacaram pelos maiores declínios na população em situação de rua, com reduções de -16% e -11%. Por outro lado, Salvador, Joinville e Boa Vista apresentaram crescimentos superiores a 80% no número de moradores de rua durante o mesmo período.*
+***Resposta:** <br>No período de 2018 a 2021, Porto Alegre e Goiânia se destacaram pelos maiores declínios na população em situação de rua, com reduções de -16% e -11%. Por outro lado, Salvador, Joinville e Boa Vista apresentaram crescimentos superiores a 80% no número de moradores de rua durante o mesmo período.*
 
 <br><br><br>
 
@@ -417,7 +417,7 @@ Para garantir a integridade dos dados e evitar possíveis erros de conexão, imp
   | 10  | pop_rua                                      | inteiro       | 0            | 48.134       | [UFMG³](https://obpoprua.direito.ufmg.br/tabelas/municipios_serie_historica_pop_rua.xlsx)                        |
   | 11  | pop_rua_ano                                  | inteiro       |     2012     | 2021         | [UFMG³](https://obpoprua.direito.ufmg.br/tabelas/municipios_serie_historica_pop_rua.xlsx)                        |
   | 12  | taxa_desemprego_media                                  | decimal       |     6,875     | 13,5         | [IBGE¹](https://www.ibge.gov.br/estatisticas/sociais/trabalho/9173-pesquisa-nacional-por-amostra-de-domicilios-continua-trimestral.html?=&t=series-historicas&utm_source=landing&utm_medium=explica&utm_campaign=desemprego)                        |
-  | 13  | estacao_meteorologica                                  | texto       |     -     | -         | [INMET⁴](https://portal.inmet.gov.br/dadoshistoricos)           
+  | 13  | estacao_meteorologica                                  | texto       |     Abrolhos     | Zé Doca         | [INMET⁴](https://portal.inmet.gov.br/dadoshistoricos)           
   | 14  | temp_sub_13                                 | decimal       |     0     | 247         | [INMET⁴](https://portal.inmet.gov.br/dadoshistoricos)  
   | 15  | pluv_sup_50                                  | decimal       |     0     | 12,5         | [INMET⁴](https://portal.inmet.gov.br/dadoshistoricos)  
 
@@ -867,36 +867,46 @@ mover_arquivos('.csv', '/mnt/dados/spark/', '/mnt/dados/dw/', 'FACT_POP_RUA')
 
 <dl>
  <dd>
-  <details><summary>Qualidade de dados...</summary>
-               
-  </details>
+  <details open ><summary>Qualidade de dados...</summary>
 
-  <details><summary>Comentários finais...</summary>
-                          
-  </details>
+<br>
+
+A qualidade dos dados é um elemento crucial em qualquer projeto ou pesquisa científica, pois influencia diretamente na validade e na confiabilidade dos resultados.
+
+Sua precisão e abrangência são fundamentalmente importantes para uma análise eficaz. Assim, destacam-se irregularidades nos conjuntos de dados abordados, os quais dificultaram sua manipulação e contribuíram para a desaceleração no processo de desenvolvimento do MVP e custos operacionais de processamento. 
+
+A priori, a falta de uniformidade na estrutura dos dados poderíam ser mitigadas, originalmente, nas consultas ou tabelas que estão sendo utilizadas como fonte de informação.
+A título de exemplo, a **[Lista_Municípios_com_IBGE_Brasil_Versao_CSV](http://blog.mds.gov.br/redesuas/wp-content/uploads/2018/06/Lista_Munic%C3%ADpios_com_IBGE_Brasil_Versao_CSV.csv)** é caracterizada por valores em branco e deslocamento de informações na coluna de índice 10. Adicionalmente, a tabela em questão também não dispõe de dados populacionais do censo de 2010 para os municípios: Mojuí dos Campos, Pescaria Brava, Balneário Rincão, Pinto Bandeira e Paraíso das Águas.
+
+Quanto aos arquivos **[municipios_serie_historica_pop_rua.csv](https://obpoprua.direito.ufmg.br/tabelas/municipios_serie_historica_pop_rua.xlsx)** fornecidos pelo Observatório de Políticas Públicas em colaboração com o Ministério da Cidadania, a coluna de índice 0 foi removida devido à ausência de um cabeçalho que identificasse seu conteúdo. Isso enfatiza a relevância de manter dados devidamente documentados.
+
+Outro ponto de relevância diz respeito aos 1.700 municípios, dos 5.570 que compõem o território nacional, que nunca disponibilizaram informações acerca da quantidade de pessoas em situação de rua, com 99,52% sendo categorizados pelo IBGE como cidades pequenas e variação populacional de 877 a 134.734 pessoas.
+
+O aumento exponencial desta população, também pode não necessariamente refletir um aumento deste grupo em si, mas sim, uma melhora na abrangência do sistema do Cadastro Único, de onde as informação relativas aos moradores de rua foram obtidas.
+
+Essas teses podem ser sustentadas no fato de que, em 2012, apenas 607 municípios forneceram dados sobre moradores de rua, enquanto em 2021, 2965 municípios o fizeram. Mais uma vez, isso sugere um maior alcance do sistema CadÚnico ao longo do tempo e corrobora de que essas pessoas não estavam sendo devidamente contabilizadas em períodos anteriores.
+
+Quanto as **[informações meteorológicas coletadas pelas Estações Meteorológicas Automáticas (EMA's)](https://portal.inmet.gov.br/dadoshistoricos)** do Instituto Nacional de Meteorologia (INMET), o portal G1, em 2021, alertou para a negligência em relação à manutenção de cerca de 30% das estações meteorológicas automáticas no Brasil. Desta forma, empregou-se o método estatístico Z-score para identificar e isolar valores discrepantes (outliers) em relação aos padrões esperados.
+
+Como evidência, em Minas Gerais, uma estação registrou 364 dias médios anuais com temperaturas abaixo de 13 graus Celsius. Essa situação não apenas contraria as previsões climáticas típicas da região, como suscita fortes indícios de desregulagem ou mau funcionamento do equipamento.
+
+</details>
+
+<details open ><summary>Comentários finais...</summary>
+
+<br>
+
+Em geral, essas questões não afetaram significativamente os resultados do MVP. No entanto, referente à contabilização dos moradores de rua, é evidente a falta de padronização na coleta de dados dessa população vulnerável.
+
+De acordo com o Instituto de Pesquisa Econômica Aplicada (IPEA), a estimativa dos moradores de rua "não é realizada município a município[...]". A resposta indicou que os cidades que possuem suas próprias contagens reportam o número de pessoas em situação de rua por meio do **[Censo SUAS](https://aplicacoes.mds.gov.br/snas/vigilancia/index2.php)** e que dados detalhados poderíam ser obtidos através do Cadastro Único, os quais este MVP empregou.
+
+Além disso, outro desafio encontrado durante a condução deste trabalho foi a dificuldade em obter informações consistentes e detalhadas sobre a disponibilidade de vagas em albergues municipais destinados a moradores de rua. O pedido de acesso à informação ao Ministério do Desenvolvimento e Assistência Social, Família e Combate à Fome (MDS) revelou que não existe um levantamento unificado desses dados em esfera nacional, estadual ou municipal. Essa limitação na disponibilidade de dados representa um obstáculo significativo, uma vez que a ausência de informações sobre a capacidade dos albergues dificulta a avaliação da infraestrutura de apoio disponível para essa população. 
+
+Por fim, o estudo buscou compreender a situação dos moradores de rua no Brasil e conseguiu responder integralmente suas propostas iniciais. Porém, houve limitações na disponibilidade de dados municipais, sendo uma lacuna significativa na compreensão desse problema social.
+
+Portanto, para futuros trabalhos, recomenda-se normatizar a coleta de dados em nível municipal, com métodos de contagem padronizados. Do mesmo modo, informações detalhadas sobre a capacidade dos albergues e abordagens multidisciplinares seriam fundamentais para desenvolver políticas públicas direcionadas a abordar essa questão.
+
+</details>
 
  </dd>
 </dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
