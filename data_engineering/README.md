@@ -1,5 +1,5 @@
 **Dispersão dos moradores de rua no Brasil sob a perspectiva geoespacial e multidimensional.**             
-`Última atualização: 17/09/2023 as 22:44.` 
+`Última atualização: 17/09/2023 as 23:03.` 
 
 
 ## Objetivo(s)/resultados...
@@ -88,7 +88,7 @@ Assuntos a serem explorados:
 
 **2.1** Por município?
 
-<details><summary>...</summary>
+<details open><summary>...</summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/%25pop_rua_municipios.PNG" align="left"
      alt="%pop_rua_municipios">
@@ -124,7 +124,7 @@ Assuntos a serem explorados:
 
 **2.3** Por unidade federativa?
 
-<details><summary>...</summary>
+<details open><summary>...</summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/%25pop_rua_uf.PNG" align="left"
      alt="%pop_rua_uf">
@@ -196,7 +196,7 @@ Assuntos a serem explorados:
 
 **3.3** Por unidade federativa?
 
-<details><summary>...</summary>
+<details open><summary>...</summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/%25var_pop_rua_uf.PNG" align="left"
      alt="%var_pop_rua_uf">
@@ -268,7 +268,7 @@ Assuntos a serem explorados:
 
 **1.** Para os 25 municípios com as maiores concentrações de moradores em situação de rua...
 
-<details><summary>...</summary>
+<details open><summary>...</summary>
 
 **1.1** Quais experimentam mais dias frios (< 13ºC) ao longo do ano, em média?
 
@@ -332,7 +332,7 @@ Todos os conjuntos de dados foram armazenados no `Data Lake Storage Gen2`, o Dat
   > <b>...</b> <br>
 O pipeline centralizou os conjuntos de dados com diferentes fontes e formatos no Data Lake (exceto das EMA's, devido a quantidade de arquivos).
 
-<details><summary><b>Ver pipeline...</b></summary>
+<details open><summary><b>Ver pipeline...</b></summary>
 
 <img src="https://github.com/mouraxy/puc/blob/main/data_engineering/img/pipeline.PNG" align="left"
      alt="pipeline">
@@ -836,6 +836,13 @@ def carga_sql(df, tabela):
             .option("database", "bd_mouraxy")\
             .option("dbtable", tabela)\
             .save()
+
+# Enviar dados para o SQL...
+#carga_sql(df_pop_censo_2010_id, "DW.DIM_MUNICIPIOS")
+#carga_sql(df_regiao, "DW.DIM_REGIAO")
+#carga_sql(df_estado, "DW.DIM_UNIDADE_FEDERATIVA")
+#carga_sql(df_porte, "DW.DIM_PORTE_MUNICIPIO")
+#carga_sql(df_fato, "DW.FACT_POP_RUA")
 ```
 
 ```py
